@@ -6,14 +6,16 @@ import Autoplay from "embla-carousel-autoplay";
 import AchievementOne from "../../Assets/Image/achievement_one.png";
 import AchievementTwo from "../../Assets/Image/achievement_two.png";
 import AchievementThree from "../../Assets/Image/achievement_three.png";
-import SmartConLogo from "../../Assets/Logo/smartConsLogo.jpeg";
+import Civil from "../../Assets/Logo/civil.png";
+import MES from "../../Assets/Logo/mes.png";
+import NasirConLogo from "../../Assets/Logo/nasir.png";
 import { PhoneOutlined, MailOutlined, HomeOutlined } from "@ant-design/icons";
 
 export default function Footer() {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
-    <div  id="footer">
-      <div className="w-full h-[46rem] bg-black mt-[25rem] -z-10 ">
+    <div id="footer">
+      <div className="w-full py-10 bg-black mt-[25rem] -z-10 ">
         <div>
           <div
             className=" bg-[#E4E4E4] h-auto md:py-[2rem] sm:py-3 sm:w-[95%] md:w-[80%]  m-auto mt-[-20rem] absolute left-0
@@ -75,43 +77,58 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="">
+        <div className="px-10">
           <div
             className="md:flex md:flex-row sm:flex sm:flex-col gap-5 
           justify-around text-white sm:pt-[12rem] md:pt-[25rem]"
           >
-            <div className="md:w-[30%] sm:w-[90%] sm:self-center md:mb-[2rem]">
+            <div className="  sm:self-center md:mb-[2.2rem]">
               <div className="flex flex-col ">
+                <h2 className="font-poppinsBold text-[25px] underline">
+                  Sister Concern
+                </h2>
                 <img
-                  className="rounded-full w-[7rem] h-[7rem]"
+                  className="rounded-md md:m-0 sm:m-auto md:mt-5 sm:mt-5 w-[10rem] h-[8rem] mt-5"
                   alt="smartLogo"
-                  src={SmartConLogo}
+                  src={NasirConLogo}
                 ></img>
-                <p className="text-white mt-4">
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text. It has roots in a piece of classical Latin literature
-                  from 45 BC, making it over 2000 years old.
-                </p>
               </div>
             </div>
 
-            <div className="sm:hidden md:block mb-[4rem] self-end">
-              <h2 className="font-poppinsBold text-[25px]">Quick Links</h2>
-              <h2 className="mt-5">Home</h2>
-              <h2>About US</h2>
-              <h2>Project</h2>
+            <div className="">
+              <div className="flex flex-col ">
+                <h2 className="font-poppinsBold text-[25px] sm:text-center underline ">
+                  Affiliation with…
+                </h2>
+                <div className="flex gap-3 mt-5">
+                  <img
+                    className="rounded-full md:m-0 sm:m-auto sm:w-[5rem] sm:h-[5rem] md:w-[10rem] md:h-[10rem] mt-5"
+                    alt="smartLogo"
+                    src={MES}
+                  ></img>
+                  <img
+                    className="rounded-full sm:m-auto sm:w-[6rem] sm:h-[5rem]  md:w-[10rem] md:h-[10rem] mt-5"
+                    alt="smartLogo"
+                    src={Civil}
+                  ></img>
+                </div>
+              </div>
             </div>
 
-            <div className="sm:hidden md:block mb-[1rem] self-end">
-              <h2 className="font-poppinsBold text-[25px]">Services</h2>
+            <div className="sm:hidden md:block mb-[3rem] self-end">
+              <h2 className="font-poppinsBold text-[25px] underline">
+                Services
+              </h2>
               <h2 className="mt-5">Aesthetic Exterior Design</h2>
               <h2>Interior Design</h2>
               <h2>BATCHING PLANT</h2>
               <h2>IT Sector</h2>
               <h2>Event Managment</h2>
             </div>
-            <div className=" mb-[2.5rem] md:self-end sm:self-center">
-              <h2 className="font-poppinsBold text-[25px]">Contact</h2>
+            <div className=" mb-[4rem] md:self-end sm:self-center">
+              <h2 className="font-poppinsBold text-[25px] underline md:text-left sm:text-center sm:mt-5 md:mt-0">
+                Contact
+              </h2>
               <span className="flex gap-2 mt-5">
                 <span className="mt-[-4px]">
                   {" "}
@@ -136,6 +153,8 @@ export default function Footer() {
               </span>
             </div>
           </div>
+          <a  href="https://mea-frontend-one.vercel.app/app" 
+          className="text-white flex justify-end">Admin</a>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import AboutUsTwo from "../../Assets/Image/about_us_project_two.png";
 
 export default function SectionOne() {
   return (
-    <div  id="sectionOne">
+    <div id="sectionOne">
       <div className="mt-5 bg-white py-[5rem]">
         <div className="mt-[5rem] w-full m-auto">
           <div className=" m-auto">
@@ -25,15 +25,15 @@ export default function SectionOne() {
         <div className="md:flex md:flex-row sm:flex-col w-full md:px-[5rem] sm:px-2 py-5 mt-[5rem] justify-between">
           <div className="md:w-[40%] sm:w-full md:text-[20px] font-poppins">
             <p>
-              Modern Engineers & Architects Ltd. (MEAL) is a multi-discipline
-              consultant and engineering construction firm that provides
-              different types of services from preliminary planning to the ends
-              of construction as a turn key solutions. <br></br> <br></br>
-              Modern Engineers & Architects Ltd. (MEAL) has variety of projects
-              with vast experience providing all kinds of engineering solutions
-              that our country demands. We provide wide- ranging integrated
-              engineering services. It is committed to help clients with a new
-              vision, technologies and provides the best solutions and services.
+              We are multi-discipline consultant and engineering construction
+              firm that provides different types of services from preliminary
+              planning to the ends of construction as a turn key solutions.
+              <br></br> <br></br>
+              We have variety of projects with vast experience providing all
+              kinds of engineering solutions that our country demands.  We
+              provide wide-ranging integrated engineering services. It is
+              committed to help clients with a new vision, technologies and
+              provides the best solutions and services.
             </p>
           </div>
           <div>

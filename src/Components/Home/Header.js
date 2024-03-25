@@ -1,5 +1,6 @@
 import React from "react";
-import smartLogo from "../../Assets/Logo/smartConsLogo.jpeg";
+import smartLogo from "../../Assets/Logo/smartLogo.png";
+import meaLogo from "../../Assets/Logo/meaLogo.png";
 
 export default function Header() {
   function homePage() {
@@ -34,7 +35,7 @@ export default function Header() {
           <img
             alt="smartConstructionLogo"
             className="sm:w-[2rem] md:w-[3.5rem] sm:h-[2rem] md:h-[3.5rem] rounded-full"
-            src={smartLogo}
+            src={meaLogo}
           ></img>
 
           <div
@@ -79,9 +80,13 @@ export default function Header() {
             </h2>
           </div>
 
-          {/* <div>
-            <div className="w-[5rem]"></div>
-          </div> */}
+          <div>
+          <img
+            alt="smartConstructionLogo"
+            className="opacity-80 sm:w-[2rem] md:w-[3.5rem] sm:h-[2rem] md:h-[3.5rem] rounded-full"
+            src={smartLogo}
+          ></img>
+          </div>
         </div>
       </div>
     </div>
