@@ -14,7 +14,7 @@ export default function InvoiceListShow({
   list: projects,
   handleReFetch,
   createInvoice,
-  createWorkOrder,
+  openItems,
 }) {
   const [page, setPage] = useState(5);
   const [current, setCurrent] = useState(1);
@@ -34,9 +34,17 @@ export default function InvoiceListShow({
       defaultSortOrder: "descend",
       sorter: (a, b) => a.id - b.id,
       render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] ">
+        <div
+        onClick={(e) => openItems(record.id)}
+        className="cursor-pointer font-montserrat font-[400] "
+      >
+        <button
+          // onClick={(e) => openProjectList(record.id)}
+          className="sm:text-[15px]  font-montserrat font-[400] flex gap-2"
+        >
           <p>C-{record.id}</p>
-        </div>
+        </button>
+      </div>
       ),
     },
     {
@@ -106,30 +114,30 @@ export default function InvoiceListShow({
         </div>
       ),
     },
-    {
-      title: "Unit",
-      dataIndex: "unit",
-      key: "unit",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat  text-[13px]">
-          <Tag color="blue">
-            <p>{Math.round(record.unit * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
-    {
-      title: "Unit Rate(tk)",
-      dataIndex: "unit_rate",
-      key: "unit_rate",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat text-[13px]">
-          <Tag color="geekblue">
-            <p>{Math.round(record.unit_rate * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Unit",
+    //   dataIndex: "unit",
+    //   key: "unit",
+    //   render: (level, record) => (
+    //     <div className="font-[500] cursor-pointer font-montserrat  text-[13px]">
+    //       <Tag color="blue">
+    //         <p>{Math.round(record.unit * 100) / 100}</p>
+    //       </Tag>
+    //     </div>
+    //   ),
+    // },
+    // {
+    //   title: "Unit Rate(tk)",
+    //   dataIndex: "unit_rate",
+    //   key: "unit_rate",
+    //   render: (level, record) => (
+    //     <div className="font-[500] cursor-pointer font-montserrat text-[13px]">
+    //       <Tag color="geekblue">
+    //         <p>{Math.round(record.unit_rate * 100) / 100}</p>
+    //       </Tag>
+    //     </div>
+    //   ),
+    // },
     {
       title: "Vat",
       dataIndex: "vat",

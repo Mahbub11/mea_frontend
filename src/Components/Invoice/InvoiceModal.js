@@ -29,6 +29,8 @@ export default function InvoiceModal({
   handleInvoiceReFetch,
   previousDue,
 }) {
+
+  console.log(data)
   const dispatch = useDispatch();
   const [customerName, setCustomerName] = useState();
   const [address, setAddress] = useState();

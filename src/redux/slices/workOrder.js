@@ -20,7 +20,7 @@ const slice = createSlice({
       state.loading = true;
     },
     setWorkOrderList: (state, action) => {
-      state.sellsReportList = action.payload.payload;
+      state.workOrder = action.payload.payload;
     },
     setWorkOrderRequestFailed: (state, action) => {
       state.error = action.payload.payload;

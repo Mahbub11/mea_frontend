@@ -1,4 +1,4 @@
-import { Modal, Skeleton } from "antd";
+import { Drawer, Modal, Skeleton } from "antd";
 import Search from "antd/es/input/Search";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,11 +13,14 @@ import { ShowNotification } from "../../redux/actions";
 import InvoiceFound from "../../Components/Casting/InvoiceFound";
 import MakeBillModal from "../../Components/Casting/MakeBillModal";
 import WorkOrderModal from "../../Components/WorkOrder/WorkOrderModal";
+import { getWorkOrderList } from "../../redux/slices/workOrder";
+import CastingItems from "../../Components/Casting/CastingItems";
 
 function CastingPage(props) {
   const dispatch = useDispatch();
-  const { sellsReportList } = useSelector((state) => state.sellsReport);
-  const { sellsList } = useSelector((state) => state.sells);
+  // const { sellsReportList } = useSelector((state) => state.sellsReport);
+  const { workOrder } = useSelector((state) => state.workOrder);
+  // const { sellsList } = useSelector((state) => state.sells);
   const [busy, isBusy] = useState(true);
   const [filterData, setFilterData] = useState();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
@@ -28,26 +31,31 @@ function CastingPage(props) {
   const [previousDue, setPreviousDue] = useState([]);
   const [showWorkOrderModal, setShowWorkOrderModal] = useState(false);
   const [workOrderData, setworkOrderData] = useState();
+  const [drawer, setDrawer] = useState(false);
+  const [castingItems, setCastingItems] = useState();
   const config = isMobile
     ? { maxWidth: "98vw", padding: 0 }
     : { maxWidth: "80vw" };
 
   useEffect(() => {
-    dispatch(getSellsList());
+    dispatch(getWorkOrderList());
+    // dispatch(getSellsList());
     dispatch(getInvoiceList());
-    setFilterData(sellsList);
+    setFilterData(workOrder);
     isBusy(false);
   }, [busy, dispatch]);
 
   useEffect(() => {
-    setFilterData(sellsList);
-  }, [sellsList]);
+    setFilterData(workOrder);
+  }, [workOrder]);
+
+  console.log(workOrder);
 
   const handleSearch = (e) => {
     if (e.target.value.length === 0) {
-      setFilterData(sellsList);
+      setFilterData(workOrder);
     } else {
-      const newData = sellsList.filter((val) =>
+      const newData = workOrder.filter((val) =>
         val.company.name
           .toLocaleLowerCase()
           .includes(e.target.value.toLocaleLowerCase())
@@ -79,23 +87,23 @@ function CastingPage(props) {
   };
 
   const createBill = async (id) => {
-    const data = sellsList.find((item) => item.id === id);
+    const data = workOrder.find((item) => item.id === id);
     setInvoiceData(data);
 
-    const prevDue = sellsList.filter(
-      (val) =>
-        val.id !== id &&
-        val.cid === data.company.id &&
-        val.pid === data.project.id &&
-        (val.status === 0 || val.state === 3)
-    );
+    // const prevDue = workOrder.filter(
+    //   (val) =>
+    //     val.id !== id &&
+    //     val.cid === data.company.id &&
+    //     val.pid === data.project.id &&
+    //     (val.status === 0 || val.state === 3)
+    // );
 
-    const finalCalculateVal = prevDue.map((val) => ({
-      ...val,
-      due: val.total_amount - val.paid_amount,
-    }));
+    // const finalCalculateVal = prevDue.map((val) => ({
+    //   ...val,
+    //   due: val.total_amount - val.paid_amount,
+    // }));
 
-    setPreviousDue(finalCalculateVal);
+    // setPreviousDue(finalCalculateVal);
     setShowInvoiceModal(true);
   };
 
@@ -104,7 +112,7 @@ function CastingPage(props) {
     setShowInvoiceModal(false);
   };
   const createWorkOrder = (id) => {
-    const data = sellsList.find((item) => item.id === id);
+    const data = workOrder.find((item) => item.id === id);
 
     setworkOrderData(data);
     setShowWorkOrderModal(true);
@@ -113,6 +121,11 @@ function CastingPage(props) {
   const workOrderModal = () => {
     isBusy(true);
     setShowWorkOrderModal(false);
+  };
+  const openProjectList = (id) => {
+    setDrawer(true);
+    const data = filterData.filter((val) => val.id === id)[0];
+    setCastingItems(data);
   };
 
   return (
@@ -134,7 +147,8 @@ function CastingPage(props) {
             </div>
             <div className="mt-2 md:w-[90%] sm:w-full m-auto">
               <CastingList
-              createWorkOrder={createWorkOrder}
+                openProjectList={openProjectList}
+                createWorkOrder={createWorkOrder}
                 createBill={createBill}
                 handleEditCompany={handleEditCompany}
                 list={filterData}
@@ -177,15 +191,13 @@ function CastingPage(props) {
               <div>
                 <MakeBillModal
                   handleInvoiceReFetch={handleInvoiceReFetch}
-                  sellsReportList={sellsReportList}
                   invoiceData={invoiceData}
-                  previousDue={previousDue}
                 ></MakeBillModal>
               </div>
             </Modal>
           </div>
 
-          <div>
+          {/* <div>
             <Modal
               style={config}
               footer={null}
@@ -203,7 +215,16 @@ function CastingPage(props) {
                 ></WorkOrderModal>
               </div>
             </Modal>
-          </div>
+          </div> */}
+
+          <Drawer
+            closable={true}
+            width={870}
+            onClose={() => setDrawer(false)}
+            open={drawer}
+          >
+            <CastingItems data={castingItems}></CastingItems>
+          </Drawer>
         </div>
       )}
     </div>

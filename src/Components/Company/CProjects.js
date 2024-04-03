@@ -24,7 +24,6 @@ export default function CProjects({ data }) {
     }
   };
 
-  console.log(data)
 
   return (
     <div>

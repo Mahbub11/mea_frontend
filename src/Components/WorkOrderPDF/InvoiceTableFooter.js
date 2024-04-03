@@ -13,25 +13,26 @@ const styles = StyleSheet.create({
     fontStyle: "bold",
   },
   description: {
-    width: "70%",
+    width: "72%",
     textAlign: "right",
     borderRightColor: borderColor,
     borderRightWidth: 1,
     paddingRight: 8,
   },
   total: {
-    width: "30%",
-    textAlign: "right",
+    width: "28%",
+    textAlign: "left",
     paddingRight: 8,
+    marginLeft:'10px'
   },
 });
 
-const InvoiceTableFooter = ({ invoice }) => {
+const InvoiceTableFooter = ({ amount }) => {
   return (
     <View style={styles.row}>
       <Text style={styles.description}>TOTAL</Text>
       <Text style={styles.total}>
-        {Number.parseFloat(invoice.sub_total).toFixed(2)}{" "}
+        {Number.parseFloat(amount).toFixed(2)}{" "}
       </Text>
     </View>
   );

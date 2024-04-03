@@ -11,19 +11,14 @@ export default function EditProject({ data, handleReFetch, closeModal }) {
   const [busy, isBusy] = useState(true);
   const { companyList } = useSelector((state) => state.company);
   const [company, setCompany] = useState();
-  const [mpa, setMpa] = useState(0);
-  const [cubicMeter, setCubicMeter] = useState(0);
-  const [cft, setCft] = useState(0);
+  const [siteEngName, setSiteEngName] = useState();
+  const [siteEngContact, setSiteEngContact] = useState();
 
-
-  useEffect(() => {
-    setCft(35.315 * cubicMeter);
-  }, [cubicMeter, mpa]);
   useEffect(() => {
     setName(data.name);
-    setMpa(data.mpa);
-    setCubicMeter(data.cubic_meter);
-    setCft(data.cft_quantity);
+    setSiteEngName(data.site_eng_name);
+    setSiteEngContact(data.site_eng_phone);
+
     setCompany(data.company.id);
   }, [busy, data]);
 
@@ -31,9 +26,8 @@ export default function EditProject({ data, handleReFetch, closeModal }) {
     data = {
       id: data.id,
       name: name,
-      mpa,
-      cubic_meter: cubicMeter,
-      cft_quantity: cft,
+      site_eng_name: siteEngName,
+      site_eng_phone: siteEngContact,
       cid: company,
     };
 
@@ -41,9 +35,7 @@ export default function EditProject({ data, handleReFetch, closeModal }) {
 
     dispatch(updateProject(data));
     setName();
-    setMpa();
-    setCft();
-    setCubicMeter();
+
     handleReFetch();
   };
 
@@ -95,31 +87,23 @@ export default function EditProject({ data, handleReFetch, closeModal }) {
               </div>
 
               <div className="mt-3">
-                <p>* Enter Mpa</p>
-                <InputNumber
-                  value={mpa}
-                  onChange={(e) => setMpa(e)}
-                  type="number"
-                  className="h-[3rem] w-full text-[20px] font-[800]"
-                ></InputNumber>
+                <p>Site Eng. Name</p>
+                <Input
+                  value={siteEngName}
+                  onChange={(e) => setSiteEngName(e.target.value)}
+                  type="text"
+                  className="h-[3rem] w-full  font-[700]"
+                ></Input>
               </div>
               <div className="mt-3">
-                <p>* Cubic Meter</p>
-                <InputNumber
-                  value={cubicMeter}
-                  onChange={(e) => setCubicMeter(e)}
-                  type="number"
-                  className="h-[3rem] w-full text-[20px] font-[800]"
-                ></InputNumber>
-              </div>
-              <div className="mt-3">
-                <p>* CFT Quantity</p>
-                <InputNumber
-                  value={cft}
-                  disabled
-                  type="number"
-                  className="h-[3rem] w-full text-[20px] font-[800]"
-                ></InputNumber>
+                <p>Site Eng. Contact</p>
+                <Input
+                  value={siteEngContact}
+                  onChange={(e) => setSiteEngContact(e.target.value)}
+                  type="text"
+                  placeholder="+88 010 0000 0000"
+                  className="h-[3rem] w-full  font-[700]"
+                ></Input>
               </div>
 
               <button

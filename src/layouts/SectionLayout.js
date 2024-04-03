@@ -12,8 +12,8 @@ import { Link, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CloseNotification } from "../redux/actions";
 import { getSellsList } from "../redux/slices/sells";
-import {getCompanyList} from '../redux/slices/company'
-import {getProjectList} from '../redux/slices/project'
+import { getCompanyList } from "../redux/slices/company";
+import { getProjectList } from "../redux/slices/project";
 import { getSellsReportList } from "../redux/slices/sellsReport";
 import { API_LEVEL, APP_URL } from "../config";
 const { Header, Sider, Content } = Layout;
@@ -40,16 +40,15 @@ export default function SectionLayout() {
     }
   }, [common.message]);
 
-  useEffect(()=>{
-    dispatch(getSellsList())
-    dispatch(getSellsReportList())
-    dispatch(getCompanyList())
-    dispatch(getProjectList())
-
-  },[])
+  useEffect(() => {
+    dispatch(getSellsList());
+    dispatch(getSellsReportList());
+    dispatch(getCompanyList());
+    dispatch(getProjectList());
+  }, []);
 
   return (
-    <Layout className="bg-#e0ebf8 h-auto m-auto z-50 sm:w-full ">
+    <Layout className="bg-#e0ebf8 h-screen m-auto z-50 sm:w-full ">
       {contextHolder}
       <Sider
         className={`${collapsed ? "hidden" : "block"}`}
@@ -77,14 +76,15 @@ export default function SectionLayout() {
               icon: <HomeOutlined />,
             },
             {
-              label: (
-                <a href={`${APP_URL}app/input/casting`} >
-                  Input Selling
-                </a>
-              ),
-              key: "Input_Order",
+              label: <a href={`${APP_URL}app/work-order`}>Work Order</a>,
+              key: "Work_Order",
               icon: <HomeOutlined />,
             },
+            // {
+            //   label: <a href={`${APP_URL}app/input/casting`}>Input Selling</a>,
+            //   key: "Input_Order",
+            //   icon: <HomeOutlined />,
+            // },
             {
               label: "Casting",
               key: "access-control",
@@ -94,7 +94,7 @@ export default function SectionLayout() {
               children: [
                 {
                   label: (
-                    <a href={`${APP_URL}app/listing`}  rel="noopener noreferrer">
+                    <a href={`${APP_URL}app/listing`} rel="noopener noreferrer">
                       Casting List
                     </a>
                   ),
@@ -104,7 +104,7 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${APP_URL}app/billing`}  rel="noopener noreferrer">
+                    <a href={`${APP_URL}app/billing`} rel="noopener noreferrer">
                       Billing List
                     </a>
                   ),
@@ -114,7 +114,10 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${APP_URL}app/invoice-list`}  rel="noopener noreferrer">
+                    <a
+                      href={`${APP_URL}app/invoice-list`}
+                      rel="noopener noreferrer"
+                    >
                       Invoice List
                     </a>
                   ),
@@ -124,7 +127,10 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${APP_URL}app/casting-analysis`}  rel="noopener noreferrer">
+                    <a
+                      href={`${APP_URL}app/casting-analysis`}
+                      rel="noopener noreferrer"
+                    >
                       Casting Analysis
                     </a>
                   ),
@@ -143,7 +149,7 @@ export default function SectionLayout() {
               children: [
                 {
                   label: (
-                    <a href={`${APP_URL}app/company`}  rel="noopener noreferrer">
+                    <a href={`${APP_URL}app/company`} rel="noopener noreferrer">
                       Company
                     </a>
                   ),
@@ -153,7 +159,7 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${APP_URL}app/project`}  rel="noopener noreferrer">
+                    <a href={`${APP_URL}app/project`} rel="noopener noreferrer">
                       Project
                     </a>
                   ),
@@ -189,7 +195,7 @@ export default function SectionLayout() {
          from-blue-600 via-green-600 to-indigo-500 inline-block text-transparent bg-clip-text
           text-center text-[22px] font-serif font-[500] drop-shadow-sm w-auto"
           >
-            <Link to={"/app"}>MEA</Link>
+            <Link to={"/app"}>SES</Link>
           </h1>
           <div></div>
         </Header>

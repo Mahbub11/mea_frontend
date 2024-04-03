@@ -50,6 +50,7 @@ export default function Router() {
         { path: "company", element: <Company></Company> },
         { path: "project", element: <Project></Project> },
         { path: "invoice-list", element: <InvoiceList></InvoiceList> },
+        { path: "work-order", element: <WorkOrder></WorkOrder> },
         {
           path: "casting-analysis",
           element: <CastingAnalysis></CastingAnalysis>,
@@ -85,3 +86,4 @@ const CastingAnalysis = Loadable(
 );
 const Billing = Loadable(lazy(() => import("../pages/Billing/Billing")));
 const Payment = Loadable(lazy(() => import("../pages/Payment/Payment")));
+const WorkOrder = Loadable(lazy(() => import("../pages/WorkOrder/WorkOrder")));

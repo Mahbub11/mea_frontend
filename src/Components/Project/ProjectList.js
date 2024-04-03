@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Popconfirm,
-} from "antd";
+import { Button, Popconfirm } from "antd";
 import { Pagination, PaginationProps, Row, Select, Table } from "antd";
 import { StarOutlined, StarFilled, DeleteOutlined } from "@ant-design/icons";
 import moment from "moment";
@@ -33,7 +30,7 @@ export default function ProjectList({
       sorter: (a, b) => a.id - b.id,
       render: (level, record) => (
         <div className=" font-montserrat font-[400] ">
-          <p>C-{record.id}</p>
+          <p>P-{record.id}</p>
         </div>
       ),
     },
@@ -80,37 +77,38 @@ export default function ProjectList({
         </div>
       ),
     },
+    {
+      title: "Site Address",
+      dataIndex: "site_address",
+      key: "site_address",
+      render: (level, record) => (
+        <div className=" font-montserrat font-[400] ">
+          <p>{record.address}</p>
+        </div>
+      ),
+    },
 
     {
-      title: "MPA",
-      dataIndex: "mpa",
-      key: "mpa",
+      title: "Site Eng. Name",
+      dataIndex: "site_eng_name",
+      key: "site_eng_name",
       render: (level, record) => (
         <div className=" font-montserrat font-[400] ">
-          <p>{record.mpa}</p>
+          <p>{record.site_eng_name}</p>
         </div>
       ),
     },
     {
-      title: "Cubic_Meter",
-      dataIndex: "cubic_meter",
-      key: "cubic_meter",
+      title: "Site Eng. Contact",
+      dataIndex: "site_eng_phone",
+      key: "site_eng_phone",
       render: (level, record) => (
         <div className=" font-montserrat font-[400] ">
-          <p>{record.cubic_meter}</p>
+          <p>{record.site_eng_phone}</p>
         </div>
       ),
     },
-    {
-      title: "CFT Quantity",
-      dataIndex: "cft_quantity",
-      key: "cft_quantity",
-      render: (level, record) => (
-        <div className="font-montserrat font-[400] ">
-          <p>{record.cft_quantity}</p>
-        </div>
-      ),
-    },
+
     {
       title: "Added",
       dataIndex: "added",

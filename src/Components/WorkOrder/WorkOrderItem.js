@@ -1,72 +1,283 @@
 import React, { useEffect, useState } from "react";
 import WorkOrderField from "./WorkOrderField";
-import { Button, Input, InputNumber } from "antd";
+import { Button, Input, InputNumber, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
+const mpaRateList = [
+  {
+    label: 25,
+    value: 340,
+  },
+  {
+    label: 28,
+    value: 345,
+  },
+  {
+    label: 30,
+    value: 345,
+  },
+  {
+    label: 32,
+    value: 350,
+  },
+];
 export default function WorkOrderItem({
   id,
-  name,
-  value,
+  materials_name,
+  materials_quantity,
   onDeleteItem,
+  cubic_meter,
   onEdtiItem,
   disabled,
-  disabledNew
+  disabledNew,
 }) {
- 
+  const [mpa, setMpa] = useState();
+  const [mpaRate, setMpaRate] = useState();
+  const [amount, setAmount] = useState();
+
+  useEffect(() => {
+    onEdtiItem({
+      event: {
+        id,
+        name: "materials_category",
+        value: mpa,
+      },
+      flag: 2,
+    });
+    onEdtiItem({
+      event: {
+        id,
+        name: "materials_rate",
+        value: mpaRate,
+      },
+      flag: 2,
+    });
+    onEdtiItem({
+      event: {
+        id,
+        name: "work_order_amount",
+        value: amount ? amount : 0,
+      },
+      flag: 2,
+    });
+  }, [mpa, mpaRate, amount]);
+
+  useEffect(() => {
+    setAmount(mpaRate * materials_quantity);
+  }, [materials_quantity, mpaRate]);
 
   const deleteItemHandler = () => {
     onDeleteItem(id);
   };
 
-  const handleNext = (e) => {
-    console.log(e);
+  const mpacategory = (e) => {
+    setMpa(e.split("-")[0]);
+    setMpaRate(e.split("-")[1]);
+
+    console.log(e.split("-")[1]);
   };
 
   return (
     <div>
       <tr className="">
         <td className="w-auto px-2 ">
-          <p>Name</p>
           <WorkOrderField
-            onEditItem={(event) => onEdtiItem({ event: event })}
+            // onEditItem={(event) => onEdtiItem({ event: event })}
             cellData={{
-              isDisable:disabledNew ? false: disabled,
+              isDisable: disabledNew ? false : disabled,
               placeholder: "Name",
               type: "text",
               name: "name",
               id: id,
-              value: name,
-              className: " px-2 py-2 w-[8rem] drop-shadow-sm",
+              value: "Materials Name",
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
             }}
           />
         </td>
         <td cclassName="w-auto px-2 ">
-          <p>Value</p>
           <WorkOrderField
             onEditItem={(event) => onEdtiItem({ event: event })}
             cellData={{
-              isDisable:disabledNew ? false: disabled,
+              isDisable: disabledNew ? false : disabled,
               placeholder: "Value",
               type: "text",
               min: "1",
               name: "value",
               id: id,
-              value: value,
-              className: " px-2 py-2 w-[8rem] drop-shadow-sm",
+              value: materials_name,
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
             }}
           />
         </td>
-        
+      </tr>
+
+      <tr className="">
         <td className="w-auto px-2 ">
-          <p className="text-center">Action</p>
-          <Button
-            className="hover:bg-blue-400 bg-blue-200"
-            onClick={deleteItemHandler}
-          >
-            Delete
-          </Button>
+          <WorkOrderField
+            // onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Name",
+              type: "text",
+              // name: "materials_category",
+              id: id,
+              value: "Cubic Meter",
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+        <td cclassName="w-auto px-2 ">
+          <WorkOrderField
+            onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Value",
+              type: "text",
+              min: "1",
+              name: "cubic_meter",
+              id: id,
+              value: cubic_meter,
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
         </td>
       </tr>
+
+      <tr className="">
+        <td className="w-auto px-2 ">
+          <WorkOrderField
+            // onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Name",
+              type: "text",
+              // name: "materials_category",
+              id: id,
+              value: "Materials Category",
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+        <td cclassName="w-auto px-2 ">
+          <Select
+            value={mpa}
+            onChange={(e) => mpacategory(e)}
+            showSearch
+            className="h-[3rem] w-full font-[700]"
+            placeholder="Search to Select"
+            optionFilterProp="children"
+            options={mpaRateList.map((val, key) => {
+              return {
+                value: `${val.label}-${val.value}`,
+                label: val.label,
+              };
+            })}
+          />
+        </td>
+      </tr>
+
+      <tr className="">
+        <td className="w-auto px-2 ">
+          <WorkOrderField
+            // onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Name",
+              type: "text",
+              name: "name",
+              id: id,
+              value: "Materials Quantity(CFT)",
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+        <td cclassName="w-auto px-2 ">
+          <WorkOrderField
+            onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Value",
+              type: "text",
+              min: "1",
+              name: "materials_quantity",
+              id: id,
+              value: materials_quantity,
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+      </tr>
+
+      <tr className="">
+        <td className="w-auto px-2 ">
+          <WorkOrderField
+            // onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Name",
+              type: "text",
+              // name: "name",
+              id: id,
+              value: "Materials Rate(per cft)",
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+        <td cclassName="w-auto px-2 ">
+          <WorkOrderField
+            onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Value",
+              type: "text",
+              min: "1",
+              name: "materials_rate",
+              id: id,
+              value: mpaRate,
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+      </tr>
+      <tr className="">
+        <td className="w-auto px-2 ">
+          <WorkOrderField
+            // onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Name",
+              type: "text",
+              name: "name",
+              id: id,
+              value: "Order Amount(TK)",
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+        <td cclassName="w-auto px-2 ">
+          <WorkOrderField
+            // onEditItem={(event) => onEdtiItem({ event: event })}
+            cellData={{
+              isDisable: disabledNew ? false : disabled,
+              placeholder: "Value",
+              type: "text",
+              min: "1",
+              name: "work_order_amount",
+              id: id,
+              value: amount ? amount : 0,
+              className: " px-2 py-2 w-[12rem] drop-shadow-sm",
+            }}
+          />
+        </td>
+      </tr>
+      <div className="w-[90%] m-auto">
+        <Button
+          onClick={() => deleteItemHandler(id)}
+          className=" w-full mt-3 border-red-500"
+        >
+          Remove
+        </Button>
+      </div>
     </div>
   );
 }

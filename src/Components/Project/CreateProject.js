@@ -9,22 +9,20 @@ export default function CreateProject({ handleReFetch }) {
   const { companyList } = useSelector((state) => state.company);
   const [name, setName] = useState();
   const [company, setCompany] = useState();
-  const [mpa, setMpa] = useState(0);
-  const [cubicMeter, setCubicMeter] = useState(0);
-  const [cft, setCft] = useState(0);
+  const [siteEngName,setSiteEngName] = useState();
+  const [siteEngContact,setSiteEngContact] = useState();
+  const [address,setAddress]= useState()
 
 
-  useEffect(()=>{
-    setCft((35.315*cubicMeter).toFixed(2))
-  },[cubicMeter,mpa])
+ 
 
   const handleSave = () => {
     const data = {
       name,
      cid:company,
-     mpa,
-     cubic_meter:cubicMeter,
-     cft_quantity:cft
+     site_eng_name: siteEngName,
+     site_eng_phone: siteEngContact,
+     address:address
     };
 
     dispatch(saveProject(data));
@@ -76,8 +74,36 @@ export default function CreateProject({ handleReFetch }) {
                   placeholder="Enter Project Name"
                 ></Input>
               </div>
-
+              <div>
+                <p>* Project Address</p>
+                <Input
+                  value={name}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className="h-10"
+                  placeholder="Enter Project Address"
+                ></Input>
+              </div>
               <div className="mt-3">
+                <p>Site Eng. Name</p>
+                <Input
+                value={siteEngName}
+                onChange={(e)=> setSiteEngName(e.target.value)}
+                  type="text"
+                  className="h-[3rem] w-full  font-[700]"
+                ></Input>
+              </div>
+              <div className="mt-3">
+                <p>Site Eng. Contact</p>
+                <Input
+                value={siteEngContact}
+                onChange={(e)=> setSiteEngContact(e.target.value)}
+                  type="text"
+                  placeholder="+88 010 0000 0000"
+                  className="h-[3rem] w-full  font-[700]"
+                ></Input>
+              </div>
+
+              {/* <div className="mt-3">
                 <p>* Enter Mpa</p>
                 <InputNumber
                 value={mpa}
@@ -103,7 +129,7 @@ export default function CreateProject({ handleReFetch }) {
                   type="number"
                   className="h-[3rem] w-full text-[20px] font-[800]"
                 ></InputNumber>
-              </div>
+              </div> */}
 
               <button
                 onClick={handleSave}

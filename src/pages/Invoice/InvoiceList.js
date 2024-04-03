@@ -1,4 +1,4 @@
-import { Modal, Skeleton } from "antd";
+import { Drawer, Modal, Skeleton } from "antd";
 import Search from "antd/es/input/Search";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,9 @@ import MakeBillModal from "../../Components/Casting/MakeBillModal";
 import InvoiceListShow from "../../Components/InvoiceList/InvoiceListShow";
 import { getSellsReportList } from "../../redux/slices/sellsReport";
 import WorkOrderModal from "../../Components/WorkOrder/WorkOrderModal";
+import CastingItems from "../../Components/Casting/CastingItems";
+import InvoiceItem from "../../Components/Invoice/InvoiceItem";
+import InvoiceBillItems from "../../Components/Invoice/InvoiceBillItems";
 
 function InvoiceList(props) {
   const dispatch = useDispatch();
@@ -31,6 +34,9 @@ function InvoiceList(props) {
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
   const [showWorkOrderModal, setShowWorkOrderModal] = useState(false);
   const [previousDue, setPreviousDue] = useState([]);
+  const [drawer, setDrawer] = useState(false);
+  const [castingItems, setCastingItems] = useState();
+
   const config = isMobile
     ? { maxWidth: "98vw", padding: 0 }
     : { maxWidth: "80vw" };
@@ -108,6 +114,12 @@ function InvoiceList(props) {
     isBusy(true);
     setShowInvoiceModal(false);
   };
+  const openItems = (id) => {
+    setDrawer(true);
+    const data = filterData.filter((val) => val.id === id)[0];
+    console.log(data)
+    setCastingItems(data);
+  };
 
   return (
     <div>
@@ -128,8 +140,9 @@ function InvoiceList(props) {
             </div>
             <div className="mt-2 md:w-[90%] sm:w-full m-auto">
               <InvoiceListShow
+               openItems={openItems}
                 createInvoice={createInvoice}
-                createWorkOrder={createWorkOrder}
+                // createWorkOrder={createWorkOrder}
                 list={filterData}
                 handleReFetch={handleReFetch}
               ></InvoiceListShow>
@@ -177,6 +190,14 @@ function InvoiceList(props) {
               </div>
             </Modal>
           </div> */}
+          <Drawer
+            closable={true}
+            width={870}
+            onClose={() => setDrawer(false)}
+            open={drawer}
+          >
+            <InvoiceBillItems data={castingItems}></InvoiceBillItems>
+          </Drawer>
         </div>
       )}
     </div>

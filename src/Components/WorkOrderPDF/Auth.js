@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet } from "@react-pdf/renderer";
+import { Text, View, StyleSheet, Image } from "@react-pdf/renderer";
+import SignatureKabir from "../../Assets/Image/signatureKabir.png";
 
 const styles = StyleSheet.create({
   row: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: "30px",
+    marginTop: "40px",
   },
   dash: {
     border: "1px",
@@ -23,6 +24,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily:'Helvetica-Bold'
   },
+  logo: {
+    width: "60px",
+    height: "60px",
+  
+  },
   
 });
 
@@ -30,7 +36,9 @@ const Auth = () => (
   <View style={styles.row}>
     <View>
       <Text>Sincerely Yours,</Text>
-      <View style={styles.sapce}></View>
+      <View style={styles.sapce}>
+      <Image style={styles.logo} src={SignatureKabir} />
+      </View>
       <View>
         <Text style={styles.company}>A.H.M. AHSANUL KABIR</Text>
         <Text>Managing Director</Text>

@@ -1,11 +1,4 @@
-import {
-  Button,
-  DatePicker,
-  Input,
-  InputNumber,
-  Modal,
-  Skeleton,
-} from "antd";
+import { Button, DatePicker, Input, InputNumber, Modal, Skeleton } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useEffect, useState } from "react";
 import { uid } from "uid";
@@ -19,12 +12,9 @@ import axiosInstance from "../../utils/axios";
 import { API_LEVEL } from "../../config";
 import { ShowNotification } from "../../redux/actions";
 
-
 export default function MakeBillModal({
   invoiceData: data,
-  sellsReportList,
   handleInvoiceReFetch,
-  previousDue,
 }) {
   const dispatch = useDispatch();
   const [customerName, setCustomerName] = useState();
@@ -41,29 +31,28 @@ export default function MakeBillModal({
   const [remarks, setRemarks] = useState("");
   const [unitcft, setUnitCft] = useState();
   const [discount, setDiscount] = useState("");
-  const [vat, setVat] = useState(2);
+  const [vat, setVat] = useState(0);
   const [pumpCharge, setPumpCharge] = useState(0);
   const [rcvAmount, setRCVAmount] = useState(0);
   const [prevDue, setPrevDue] = useState(0);
   const [reviewInvoice, setReviewInvoice] = useState(false);
-  const [billNumber, setBillNumber] = useState('-');
+  const [billNumber, setBillNumber] = useState("-");
   const [busy, isBusy] = useState(true);
-  const [saveBtnStatus,setSaveBtnStatus]= useState(false)
-  const [items, setItems] = useState([
-    {
-      id: uid(6),
-      sno: uid(6),
-      itemDes: itemDes,
-      m3cft: m3cft,
-      unit: data.cubic_meter,
-      unitcft: unitcft,
-      unitRate: unitRate,
-      total: total,
-      remarks: remarks,
-    },
-  ]);
-
-  console.log(previousDue);
+  const [saveBtnStatus, setSaveBtnStatus] = useState(false);
+  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([
+  //   {
+  //     id: uid(6),
+  //     sno: uid(6),
+  //     itemDes: itemDes,
+  //     m3cft: m3cft,
+  //     unit: data.items[0].cubic_meter,
+  //     unitcft: unitcft,
+  //     unitRate: unitRate,
+  //     total: total,
+  //     remarks: remarks,
+  //   },
+  // ]);
 
   const subtotal = items.reduce((prev, curr) => {
     return prev + Number(curr.total);
@@ -83,16 +72,37 @@ export default function MakeBillModal({
     setCustomerName(data.company.name);
     setProjectName(data.project.name);
     setAddress(data.company.address);
-    setUnit(data.cubic_meter);
+    setUnit(data.items[0].cubic_meter);
+    setItems(
+      data.items.map((data, key) => {
+        return {
+          id: uid(6),
+          sno: uid(6),
+          itemDes: itemDes,
+          m3cft: 35.315,
+          unit: data.cubic_meter,
+          unitcft: data.materials_quantity,
+          unitRate: data.materials_rate,
+          total: data.work_order_amount,
+          remarks: remarks,
+        };
+      })
+    );
     // setBillNumber(sellsReportList.length + 1);
-    if (data.cft_quantity < 1000) {
+    if (data.cubic_meter * 35.315 < 1000) {
       setPumpCharge(15000);
     }
 
     isBusy(false);
   }, [data]);
 
-  console.log(prevDue);
+  useEffect(() => {
+    items.map((val) => {
+      if (val.unit * 35.315 < 1000) {
+        setPumpCharge(15000);
+      }
+    });
+  }, [items]);
 
   const addItemHandler = () => {
     const id = uid(6);
@@ -163,13 +173,13 @@ export default function MakeBillModal({
       pump_charge: pumpCharge ? true : false,
       vat: vat,
       status: 1,
-      sid: data.id,
+      wid: data.id,
     };
-  
+
     axiosInstance
       .post(`${API_LEVEL}/sells-report/create`, SellsReportdata)
       .then((response) => {
-       setBillNumber(response.data.id)
+        setBillNumber(response.data.id);
         dispatch(
           ShowNotification({
             severity: "success",
@@ -177,7 +187,7 @@ export default function MakeBillModal({
           })
         );
 
-        setSaveBtnStatus(true)
+        setSaveBtnStatus(true);
       })
       .catch((error) => {
         dispatch(
@@ -214,10 +224,11 @@ export default function MakeBillModal({
               <div className=" md:absolute md:right-[30px] ">
                 <h1>
                   Bill Number:
-                  <span className="font-[700] bg-gray-200 rounded-md px-1 py-1">{billNumber}</span>
+                  <span className="font-[700] bg-gray-200 rounded-md px-1 py-1">
+                    {billNumber}
+                  </span>
                 </h1>
               </div>
-              
             </div>
             <hr className="px-2 py-2 mt-10"></hr>
             <div>
@@ -250,7 +261,6 @@ export default function MakeBillModal({
                     ></TextArea>
                   </div>
                 </div>
-               
               </div>
             </div>
 
@@ -384,10 +394,13 @@ export default function MakeBillModal({
               </span>
             </div>
           </div>
-          <Button disabled={saveBtnStatus ? true:false} className="w-full mt-10 font-[700]" onClick={handleSaveBill}>
+          <Button
+            disabled={saveBtnStatus ? true : false}
+            className="w-full mt-10 font-[700]"
+            onClick={handleSaveBill}
+          >
             Save Bill
           </Button>
-
         </div>
       )}
     </div>

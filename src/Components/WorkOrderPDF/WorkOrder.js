@@ -14,7 +14,8 @@ import Subject from "./Subject";
 import Message from "./Message";
 import ItemsInfo from "./ItemsInfo";
 import Footer from "./Footer";
-import logo from "../../Assets/Logo/logo.png";
+import logo from "../../Assets/Logo/smartConsLogo.jpeg";
+import WorkOrderItemsTable from "./WorkOrderItemsTable";
 
 const styles = StyleSheet.create({
   page: {
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica-Bold",
   },
   metaData: {
-    marginTop: 10,
+    marginTop: '20px',
   },
   inner_row: {
     gap: 5,
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "bold",
     fontFamily: "Helvetica-Bold",
+    marginTop: "10px",
   },
   logo: {
     width: "60px",
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
 
 const WorkOrder = ({ data }) => (
   <Document>
+    {console.log(data)}
     <Page size="A4" style={styles.page}>
       <InvoiceTitle title="Work Order" />
       <Image style={styles.logo} src={logo} />
@@ -91,14 +94,11 @@ const WorkOrder = ({ data }) => (
       <Subject subject={data.subject}></Subject>
       <Message message={data.message}></Message>
       <View style={styles.second}>
-        <ItemsInfo style={styles.itemsSpace} items={data.items}></ItemsInfo>
+        <WorkOrderItemsTable data={data}></WorkOrderItemsTable>
       </View>
 
       <View>
         <View style={styles.text}>
-          <Text style={styles.secondStep}>
-            Building Status: {data.buildingStatus}
-          </Text>
           <Text style={styles.inner_row}>
             Purchase Order Date: {data.orderDate}
           </Text>
@@ -111,8 +111,12 @@ const WorkOrder = ({ data }) => (
           <Text style={styles.inner_row}>
             Delivery Site Address: {data.deliveryAddress}
           </Text>
-          <Text style={styles.inner_row}>Contact: {data.contactName}</Text>
-          <Text style={styles.inner_row}>Contact No: {data.contactNo}</Text>
+          <Text style={styles.inner_row}>
+            Site Eng. Name: {data.contactName}
+          </Text>
+          <Text style={styles.inner_row}>
+            Site Eng. Contact: {data.contactNo}
+          </Text>
         </View>
       </View>
       <Text style={styles.metaData}>

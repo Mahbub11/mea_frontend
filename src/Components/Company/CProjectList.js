@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import moment from "moment";
 
 export default function CProjectList({ data }) {
-  console.log(data);
+
   const [current, setCurrent] = useState(1);
   const [page, setPage] = useState(5);
 

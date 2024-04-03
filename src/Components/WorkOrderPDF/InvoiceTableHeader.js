@@ -29,11 +29,7 @@ const styles = StyleSheet.create({
         borderRightColor: borderColor,
         borderRightWidth: 1,
     },
-    rate2: {
-        width: '14%',
-        borderRightColor: borderColor,
-        borderRightWidth: 1,
-    },
+   
     rate3: {
         width: '14%',
         borderRightColor: borderColor,
@@ -44,11 +40,7 @@ const styles = StyleSheet.create({
         borderRightColor: borderColor,
         borderRightWidth: 1,
     },
-    rate5: {
-        width: '14%',
-        borderRightColor: borderColor,
-        borderRightWidth: 1,
-    },
+  
     rate6: {
         width: '16%',
         borderRightColor: borderColor,
@@ -58,13 +50,14 @@ const styles = StyleSheet.create({
 
   const InvoiceTableHeader = () => (
     <View style={styles.container}>
-        <Text style={styles.description}>Description</Text>
-        <Text style={styles.rate0}>unit(m3)</Text>
-        <Text style={styles.rate1}>1m3=cft</Text>
-        <Text style={styles.rate3}>Unit(cft)</Text>
-        <Text style={styles.rate4}>Unit Rate</Text>
-        <Text style={styles.rate6}>Total Amount</Text>
-        <Text style={styles.rate5}>Remarks</Text>
+        <Text style={styles.description}> Name</Text>
+        <Text style={styles.rate0}> Category</Text>
+        <Text style={styles.rate1}> Quantity(cft)</Text>
+        <Text style={styles.rate3}>Rate(per cft)</Text>
+        <Text style={styles.rate6}>Cubic Meter</Text>
+        <Text style={styles.rate4}>Amount</Text>
+        
+        
     </View>
   );
   
