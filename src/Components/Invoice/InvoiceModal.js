@@ -67,6 +67,41 @@ export default function InvoiceModal({
     },
   ]);
 
+  useEffect(() => {
+    setCustomerName(data.company.name);
+    setProjectName(data.project.name);
+    setAddress(data.company.address);
+    // setUnit(data.items[0].cubic_meter);
+    setItems(
+      data.workorder.items.map((data, key) => {
+        return {
+          id: uid(6),
+          sno: uid(6),
+          itemDes: itemDes,
+          m3cft: 35.315,
+          unit: data.cubic_meter,
+          unitcft: data.materials_quantity,
+          unitRate: data.materials_rate,
+          total: data.work_order_amount,
+          remarks: remarks,
+        };
+      })
+    );
+    // setBillNumber(sellsReportList.length + 1);
+    // if (data.materials_quantity < 1000) {
+    //   setPumpCharge(1000);
+    // }
+
+    isBusy(false);
+  }, [data]);
+
+  useEffect(() => {
+    items.map((val) => {
+      if (val.unit * 35.315 < 1000) {
+        setPumpCharge((prev)=> prev+15000);
+      }
+    });
+  }, [items]);
 
   const subtotal = items.reduce((prev, curr) => {
     return prev + Number(curr.total);
@@ -102,6 +137,8 @@ export default function InvoiceModal({
     isBusy(false);
   }, [data]);
 
+
+  console.log(previousDue)
   const setPreviousDue = (val) => {
     setPrevDue((value) => value + parseInt(val));
   };

@@ -195,7 +195,7 @@ export default function SectionLayout() {
          from-blue-600 via-green-600 to-indigo-500 inline-block text-transparent bg-clip-text
           text-center text-[22px] font-serif font-[500] drop-shadow-sm w-auto"
           >
-            <Link to={"/app"}>SES</Link>
+            <Link to={"/app"}>SCS</Link>
           </h1>
           <div></div>
         </Header>

@@ -30,10 +30,12 @@ export default function WorkOrderItem({
   onEdtiItem,
   disabled,
   disabledNew,
+  pump_charge,
 }) {
   const [mpa, setMpa] = useState();
   const [mpaRate, setMpaRate] = useState();
   const [amount, setAmount] = useState();
+  
 
   useEffect(() => {
     onEdtiItem({
@@ -60,10 +62,27 @@ export default function WorkOrderItem({
       },
       flag: 2,
     });
-  }, [mpa, mpaRate, amount]);
+    onEdtiItem({
+      event: {
+        id,
+        name: "materials_quantity",
+        value: Math.round(cubic_meter * 35.315),
+      },
+      flag: 2,
+    });
+    onEdtiItem({
+      event: {
+        id,
+        name: "pump_charge",
+        value: materials_quantity < 1000 ? true:false,
+      },
+      flag: 2,
+    });
+  }, [mpa, mpaRate, amount,cubic_meter]);
 
   useEffect(() => {
-    setAmount(mpaRate * materials_quantity);
+    
+    setAmount(mpaRate * (materials_quantity));
   }, [materials_quantity, mpaRate]);
 
   const deleteItemHandler = () => {
@@ -193,9 +212,9 @@ export default function WorkOrderItem({
         </td>
         <td cclassName="w-auto px-2 ">
           <WorkOrderField
-            onEditItem={(event) => onEdtiItem({ event: event })}
+            // onEditItem={(event) => onEdtiItem({ event: event })}
             cellData={{
-              isDisable: disabledNew ? false : disabled,
+              isDisable: true,
               placeholder: "Value",
               type: "text",
               min: "1",
@@ -270,6 +289,7 @@ export default function WorkOrderItem({
           />
         </td>
       </tr>
+      <span className={`${pump_charge?'block':'hidden'} ml-2`}>*Pump Charge Included</span>
       <div className="w-[90%] m-auto">
         <Button
           onClick={() => deleteItemHandler(id)}

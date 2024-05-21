@@ -36,9 +36,10 @@ export default function CastingAnalysisList({ list: projects, handleReFetch }) {
       description: val.description,
       company: val.company.name,
       project: val.project.name,
-      unit: val.unit,
-      UnitRate: val.unit_rate,
-      pump_charge: val.pump_charge ? "included" : "Not Included",
+      items: {
+        f:'fff',
+        d:'dddd'
+      },
       vat: val.vat,
       total_amount: val.total_amount,
       paid_amount: val.paid_amount,
@@ -257,7 +258,7 @@ export default function CastingAnalysisList({ list: projects, handleReFetch }) {
     <div className="m-auto flex flex-col justify-center sm:pb-5">
       <span className="px-2 py-2 self-end">
         <CSVLink
-         filename={"MEAL_sells_report.csv"}
+         filename={"SES_sells_report.csv"}
           className="bg-home px-2 hover:text-red-400 py-1 rounded-md"
           data={csvData}
         >

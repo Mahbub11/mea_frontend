@@ -1,6 +1,7 @@
-import { Collapse, Input, Pagination, Select, Table, Tooltip } from "antd";
+import { Collapse, Input, Pagination, Select, Table, Tag, Tooltip } from "antd";
 import React, { useState } from "react";
 import moment from "moment";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 export default function CastingItems({ data }) {
   console.log(data);
@@ -165,6 +166,22 @@ export default function CastingItems({ data }) {
     },
 
     {
+      title: "Pump Charge",
+      dataIndex: "pump_charge",
+      key: "pump_charge", 
+      render: (level, record) => (
+        <div className=" cursor-pointer font-montserrat font-[400] ">
+        <p>
+            {record.pump_charge ? (
+              <Tag icon={<CheckCircleOutlined />} color="success"></Tag>
+            ) : (
+              <Tag icon={<CloseCircleOutlined />} color="error"></Tag>
+            )}
+          </p>
+        </div>
+      ),
+    },
+    {
       title: "Amount",
       dataIndex: "cft_quantity",
       key: "cft_quantity",
@@ -191,7 +208,7 @@ export default function CastingItems({ data }) {
         </span>
       </h1>
       <div>
-        <div className=" w-[95%] mt-5 flex-col gap-5 justify-center m-auto">
+        <div className=" w-full mt-5 flex-col gap-5 justify-center m-auto">
           <Table
             dataSource={data.items}
             columns={columns}

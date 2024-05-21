@@ -219,7 +219,7 @@ function CastingPage(props) {
 
           <Drawer
             closable={true}
-            width={870}
+            width={1024}
             onClose={() => setDrawer(false)}
             open={drawer}
           >

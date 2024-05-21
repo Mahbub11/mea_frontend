@@ -9,6 +9,7 @@ import AchievementThree from "../../Assets/Image/achievement_three.png";
 import Civil from "../../Assets/Logo/civil.png";
 import MES from "../../Assets/Logo/mes.png";
 import NasirConLogo from "../../Assets/Logo/nasir.png";
+import MEALLogo from "../../Assets/Logo/meaLogo.png";
 import { PhoneOutlined, MailOutlined, HomeOutlined } from "@ant-design/icons";
 
 export default function Footer() {
@@ -85,10 +86,23 @@ export default function Footer() {
             <div className="  sm:self-center md:mb-[2.2rem]">
               <div className="flex flex-col ">
                 <h2 className="font-poppinsBold text-[25px] underline">
+                 Mother Company
+                </h2>
+                <img
+                  className="rounded-md md:m-0 sm:m-auto md:mt-5 sm:mt-5 w-[8rem] h-[8rem] mt-5"
+                  alt="smartLogo"
+                  src={MEALLogo}
+                ></img>
+              </div>
+            </div>
+
+            <div className="  sm:self-center md:mb-[2.2rem]">
+              <div className="flex flex-col ">
+                <h2 className="font-poppinsBold text-[25px] underline">
                   Sister Concern
                 </h2>
                 <img
-                  className="rounded-md md:m-0 sm:m-auto md:mt-5 sm:mt-5 w-[10rem] h-[8rem] mt-5"
+                  className="rounded-md md:m-0 sm:m-auto md:mt-5 sm:mt-5 w-[8rem] h-[8rem] mt-5"
                   alt="smartLogo"
                   src={NasirConLogo}
                 ></img>
@@ -102,12 +116,12 @@ export default function Footer() {
                 </h2>
                 <div className="flex gap-3 mt-5">
                   <img
-                    className="rounded-full md:m-0 sm:m-auto sm:w-[5rem] sm:h-[5rem] md:w-[10rem] md:h-[10rem] mt-5"
+                    className="rounded-full md:m-0 sm:m-auto sm:w-[5rem] sm:h-[5rem] md:w-[8rem] md:h-[8rem] mt-5"
                     alt="smartLogo"
                     src={MES}
                   ></img>
                   <img
-                    className="rounded-full sm:m-auto sm:w-[6rem] sm:h-[5rem]  md:w-[10rem] md:h-[10rem] mt-5"
+                    className="rounded-full sm:m-auto sm:w-[6rem] sm:h-[5rem]  md:w-[8rem] md:h-[8rem] mt-5"
                     alt="smartLogo"
                     src={Civil}
                   ></img>
@@ -153,8 +167,12 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          <a  href="https://mea-frontend-one.vercel.app/app" 
-          className="text-white flex justify-end">Admin</a>
+          <a
+            href="https://mea-frontend-one.vercel.app/app"
+            className="text-white flex justify-end"
+          >
+            Admin
+          </a>
         </div>
       </div>
     </div>

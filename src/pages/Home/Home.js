@@ -31,9 +31,10 @@ export default function Home() {
             <div>
               <div className="text-center text-white ">
                 <span className="italic font-[700] font-poppinsBold sm:text-[17px] md:text-[50px]">
-                  <h2>
-                    MODERN <span className="text-yellow-400">ENGINEERS</span> &
-                    ARCHITECTS <span className="text-yellow-400">LTD</span>
+                  <h2 className="text-blue-500 drop-shadow-md">
+                  SMART CONSTRUCTION LTD
+                    {/* MODERN <span className="text-yellow-400">ENGINEERS</span> &
+                    ARCHITECTS <span className="text-yellow-400">LTD</span> */}
                   </h2>
                 </span>
 

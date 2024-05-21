@@ -163,7 +163,7 @@ function InvoiceList(props) {
               <div>
                 <InvoiceModal
                   handleInvoiceReFetch={handleInvoiceReFetch}
-                  sellsReportList={billList}
+                  // sellsReportList={billList}
                   invoiceData={invoiceData}
                   previousDue={previousDue}
                 ></InvoiceModal>
@@ -192,7 +192,7 @@ function InvoiceList(props) {
           </div> */}
           <Drawer
             closable={true}
-            width={870}
+            width={1024}
             onClose={() => setDrawer(false)}
             open={drawer}
           >

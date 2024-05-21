@@ -65,6 +65,7 @@ export default function CreateWorkOrder({
       materials_rate: 0,
       cubic_meter: 0,
       work_order_amount: 0,
+      pump_charge:false
     },
   ]);
   const [addressLine, setAddressLine] = useState([
@@ -103,6 +104,7 @@ export default function CreateWorkOrder({
         materials_rate: 0,
         work_order_amount: 0,
         disabled: true,
+        pump_charge:false
       },
     ]);
   };
@@ -148,6 +150,8 @@ export default function CreateWorkOrder({
         name: event.name,
         value: event.value,
       };
+
+      console.log(editedItem)
 
       const newItems = items.map((items) => {
         for (const key in items) {
@@ -379,6 +383,7 @@ export default function CreateWorkOrder({
                               materials_rate={item.materials_rate}
                               work_order_amount={item.work_order_amount}
                               cubic_meter={item.cubic_meter}
+                              pump_charge= {item.pump_charge}
                               onDeleteItem={deleteItemHandler}
                               onEdtiItem={edtiItemHandler}
                             />

@@ -89,9 +89,9 @@ export default function MakeBillModal({
       })
     );
     // setBillNumber(sellsReportList.length + 1);
-    if (data.cubic_meter * 35.315 < 1000) {
-      setPumpCharge(15000);
-    }
+    // if (data.materials_quantity < 1000) {
+    //   setPumpCharge(1000);
+    // }
 
     isBusy(false);
   }, [data]);
@@ -99,7 +99,7 @@ export default function MakeBillModal({
   useEffect(() => {
     items.map((val) => {
       if (val.unit * 35.315 < 1000) {
-        setPumpCharge(15000);
+        setPumpCharge((prev)=> prev+15000);
       }
     });
   }, [items]);
