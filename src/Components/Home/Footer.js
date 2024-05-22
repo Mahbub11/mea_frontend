@@ -11,6 +11,7 @@ import MES from "../../Assets/Logo/mes.png";
 import NasirConLogo from "../../Assets/Logo/nasir.png";
 import MEALLogo from "../../Assets/Logo/meaLogo.png";
 import { PhoneOutlined, MailOutlined, HomeOutlined } from "@ant-design/icons";
+import { LIVE_URL } from "../../config";
 
 export default function Footer() {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
@@ -168,7 +169,7 @@ export default function Footer() {
             </div>
           </div>
           <a
-            href="https://mea-frontend-one.vercel.app/app"
+            href={`${LIVE_URL}app`}
             className="text-white flex justify-end"
           >
             Admin

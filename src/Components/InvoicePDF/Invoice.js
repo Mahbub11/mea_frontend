@@ -7,7 +7,7 @@ import InvoiceItemsTable from "./InvoiceItemsTable";
 import InvoiceThankYouMsg from "./InvoiceThankYouMsg";
 import GrandCalculation from "./GrandCalculation";
 import Auth from "./Auth";
-import logo from "../../Assets/Logo/logo.png";
+import logo from "../../Assets/Logo/smartConsLogo.jpeg";
 
 const styles = StyleSheet.create({
   page: {

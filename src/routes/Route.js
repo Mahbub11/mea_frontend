@@ -44,6 +44,7 @@ export default function Router() {
       element: <SectionLayout></SectionLayout>,
       children: [
         { path: "", element: <Dashboard></Dashboard> },
+        { path: "inventory", element: <Inventory></Inventory> },
         { path: "input/casting", element: <InputPage></InputPage> },
         // { path: "listing", element: <ShowData></ShowData> },
         { path: "listing", element: <CastingPage></CastingPage> },
@@ -87,3 +88,4 @@ const CastingAnalysis = Loadable(
 const Billing = Loadable(lazy(() => import("../pages/Billing/Billing")));
 const Payment = Loadable(lazy(() => import("../pages/Payment/Payment")));
 const WorkOrder = Loadable(lazy(() => import("../pages/WorkOrder/WorkOrder")));
+const Inventory = Loadable(lazy(() => import("../pages/Inventory/InventoryPage")));

@@ -78,7 +78,7 @@ export default function WorkOrderItem({
       },
       flag: 2,
     });
-  }, [mpa, mpaRate, amount,cubic_meter]);
+  }, [mpa, mpaRate, amount,cubic_meter,materials_quantity]);
 
   useEffect(() => {
     
@@ -232,7 +232,7 @@ export default function WorkOrderItem({
           <WorkOrderField
             // onEditItem={(event) => onEdtiItem({ event: event })}
             cellData={{
-              isDisable: disabledNew ? false : disabled,
+              isDisable: true,
               placeholder: "Name",
               type: "text",
               // name: "name",

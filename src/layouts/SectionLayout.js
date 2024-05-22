@@ -76,6 +76,11 @@ export default function SectionLayout() {
               icon: <HomeOutlined />,
             },
             {
+              label: <a href={`${APP_URL}app/inventory`}>Inventory</a>,
+              key: "Work_Order",
+              icon: <HomeOutlined />,
+            },
+            {
               label: <a href={`${APP_URL}app/work-order`}>Work Order</a>,
               key: "Work_Order",
               icon: <HomeOutlined />,
