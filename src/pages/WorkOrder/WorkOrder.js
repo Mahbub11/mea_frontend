@@ -56,7 +56,6 @@ export default function WorkOrder() {
     setShowWorkOrderModal(false);
   };
 
-  console.log(project)
 
   return (
     <div className="mt-10 ">

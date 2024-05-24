@@ -1,12 +1,84 @@
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import React, { useState } from "react";
+import { uid } from "uid";
+import {useDispatch} from 'react-redux'
+import InventoryItem from "./InventoryItem";
+import { AddMiscellaneous } from "./AddMiscellaneous";
+import {sentoInventory} from '../../redux/slices/inventory'
 
 export default function Addbalance() {
-  const [sand, setSand] = useState(0);
-  const [stone, setStone] = useState(0);
-  const [cement, setCement] = useState(0);
-  const [admixer, setAdmixer] = useState(0);
-  const [brickChips, setBrickChips] = useState(0);
+
+  const dispatch= useDispatch()
+  const [items, setItems] = useState([
+    {
+      id: uid(6),
+      sno: uid(6),
+      itemName: "",
+      rate: "",
+      amount: "",
+      misItemName:''
+    },
+  ]);
+ 
+  const addItemHandler = () => {
+    setItems((prevItem) => [
+      ...prevItem,
+      {
+        id: uid(6),
+        sno: uid(6),
+        itemName: "",
+        rate: "",
+        amount: "",
+        misItemName:''
+      },
+    ]);
+  };
+  const deleteItemHandler = (id) => {
+    setItems((prevItem) => prevItem.filter((item) => item.id !== id));
+  };
+  const edtiItemHandler = ({ event, flag = 1 }) => {
+    if (flag === 1) {
+      const editedItem = {
+        id: event.target.id,
+        name: event.target.name,
+        value: event.target.value,
+      };
+
+      const newItems = items.map((items) => {
+        for (const key in items) {
+          if (key === editedItem.name && items.id === editedItem.id) {
+            items[key] = editedItem.value;
+          }
+        }
+        return items;
+      });
+
+      setItems(newItems);
+    } else {
+      const editedItem = {
+        id: event.id,
+        name: event.name,
+        value: event.value,
+      };
+
+      const newItems = items.map((items) => {
+        for (const key in items) {
+          if (key === editedItem.name && items.id === editedItem.id) {
+            items[key] = editedItem.value;
+          }
+        }
+        return items;
+      });
+
+      setItems(newItems);
+    }
+  };
+
+  const handleSave=()=>{
+    dispatch(sentoInventory(items))
+  }
+
+  console.log(items);
 
   return (
     <div>
@@ -15,148 +87,37 @@ export default function Addbalance() {
           Add Purchase Items
         </h1>
 
-        <div>
-          <div className="mt-10 sm:w-[90%] md:w-[40%] flex justify-center flex-col gap-5 m-auto text-[15px] px-2 py-5">
-            <div className="flex gap-4">
-              <div>
-                <p>* Enter Sand Amount(ton)</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
+        <div className="mt-10 flex gap-5 px-2 py-2 flex-wrap justify-center w-full">
+          {items.map((item) => (
+            <InventoryItem
+              itemName={item.itemName}
+              rate={item.rate}
+              amount={item.amount}
+              misItemName={item.misItemName}
+              key={item.id}
+              id={item.id}
+              onDeleteItem={deleteItemHandler}
+              onEdtiItem={edtiItemHandler}
+            />
+          ))}
 
-              <div>
-                <p>* Rate</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-            </div>
+         
+        </div>
+        <div className="mt-10 ml-3 w-full m-auto flex  gap-5 justify-center">
+          <button
+            onClick={addItemHandler}
+            className="bg-blue-300 rounded-md px-10 py-1  text-white"
+          >
+            Add Item
+          </button>
 
-            <div className="flex gap-4">
-              <div>
-                <p>* Enter Cement Amount(ton)</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setCement(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Cement Amount(ton)"
-                ></Input>
-              </div>
-
-              <div>
-                <p>* Rate</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                 
-                ></Input>
-              </div>
-            </div>
-
-
-
-            <div className="flex gap-4">
-              <div>
-                <p>* Enter Stone Amount(ton)</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-
-              <div>
-                <p>* Rate</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div>
-                <p>* Enter Admixer Amount(ton)</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-
-              <div>
-                <p>* Rate</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div>
-                <p>* Enter Brics Chips Amount(ton)</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-
-              <div>
-                <p>* Rate</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div>
-                <p>Others</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-
-              <div>
-                <p>* Rate</p>
-                <Input
-                  value={sand}
-                  onChange={(e) => setSand(e.target.value)}
-                  className="h-10"
-                  placeholder="Enter Sand Amount(ton)"
-                ></Input>
-              </div>
-            </div>
-
-
-
-            <button
-              //    onClick={handleSave}
-              className="cursor-pointer hover:bg-blue-300 px-2 py-2 border-2 rounded-md"
-            >
-              Save
-            </button>
-          </div>
+          <button
+            onClick={handleSave}
+            className="bg-blue-300 rounded-md px-10 py-1  text-white"
+          >
+           Save Items
+          </button>
+         
         </div>
       </div>
     </div>

@@ -151,8 +151,6 @@ export default function CreateWorkOrder({
         value: event.value,
       };
 
-      console.log(editedItem)
-
       const newItems = items.map((items) => {
         for (const key in items) {
           if (key === editedItem.name && items.id === editedItem.id) {
@@ -165,7 +163,6 @@ export default function CreateWorkOrder({
       setItems(newItems);
     }
   };
-  console.log(items);
   const editAddressLine = ({ event, flag = 1 }) => {
     console.log(event.target.value);
     if (flag === 1) {
@@ -205,7 +202,6 @@ export default function CreateWorkOrder({
     }
   };
 
-  console.log(addressLine);
 
   const handleReview = () => {
     // if (!dueDate) {
@@ -259,8 +255,6 @@ export default function CreateWorkOrder({
     setDeliveryTime();
     setDeliveryTime(timeString);
   };
-
-  console.log(deliveryTime);
 
   return (
     <div>
