@@ -30,7 +30,7 @@ export default function InvoiceModal({
   previousDue,
 }) {
 
-  console.log(data)
+
   const dispatch = useDispatch();
   const [customerName, setCustomerName] = useState();
   const [address, setAddress] = useState();
@@ -87,11 +87,10 @@ export default function InvoiceModal({
         };
       })
     );
-    // setBillNumber(sellsReportList.length + 1);
-    // if (data.materials_quantity < 1000) {
-    //   setPumpCharge(1000);
-    // }
-
+    data.workorder.items.map(data=>{
+      const convertDta= parseFloat(data.pump_charge)
+      setPumpCharge((prev) => prev + parseFloat(convertDta))
+    })
     isBusy(false);
   }, [data]);
 
@@ -103,14 +102,13 @@ export default function InvoiceModal({
     });
   }, [items]);
 
-  const subtotal = items.reduce((prev, curr) => {
-    return prev + Number(curr.total);
-  }, 0);
 
+  const subtotal = data.workorder.total_amount-pumpCharge;
   const vatRate = (vat * subtotal) / 100;
-  const grandTotal = subtotal + pumpCharge + vatRate;
+  const grandTotal =Math.floor( subtotal + pumpCharge + vatRate + prevDue);
   // const payableAmount = grandTotal - rcvAmount;
-  const payableAmount = grandTotal + prevDue - rcvAmount;
+  const payableAmount = Math.floor(grandTotal);
+
 
   // useEffect(() => {
   //   setUnit(items.unit);

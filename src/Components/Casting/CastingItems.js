@@ -168,16 +168,10 @@ export default function CastingItems({ data }) {
     {
       title: "Pump Charge",
       dataIndex: "pump_charge",
-      key: "pump_charge", 
+      key: "pump_charge",
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
-        <p>
-            {record.pump_charge ? (
-              <Tag icon={<CheckCircleOutlined />} color="success"></Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="error"></Tag>
-            )}
-          </p>
+          <p>{record.pump_charge}</p>
         </div>
       ),
     },
@@ -251,10 +245,26 @@ export default function CastingItems({ data }) {
           <h2 className="font-poppinsBold">Additional Info</h2>
           <div className="mt-5">
             <div className="flex-col gap-5">
-              <h2>Order Date: <span className="font-[700]">{moment(data.order_date).format("DD-MM-YYYY")}</span></h2>
-              <h2>Delivery Date: <span className="font-[700]">{moment(data.delivery_date).format("DD-MM-YYYY")}</span></h2>
-              <h2>Site Eng. Name: <span className="font-[700]">{data.site_eng_name}</span></h2>
-              <h2>Site Eng. Phone: <span className="font-[700]">{data.site_eng_phone}</span></h2>
+              <h2>
+                Order Date:{" "}
+                <span className="font-[700]">
+                  {moment(data.order_date).format("DD-MM-YYYY")}
+                </span>
+              </h2>
+              <h2>
+                Delivery Date:{" "}
+                <span className="font-[700]">
+                  {moment(data.delivery_date).format("DD-MM-YYYY")}
+                </span>
+              </h2>
+              <h2>
+                Site Eng. Name:{" "}
+                <span className="font-[700]">{data.site_eng_name}</span>
+              </h2>
+              <h2>
+                Site Eng. Phone:{" "}
+                <span className="font-[700]">{data.site_eng_phone}</span>
+              </h2>
             </div>
           </div>
         </div>

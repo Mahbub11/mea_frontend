@@ -40,33 +40,6 @@ export default function MakeBillModal({
   const [busy, isBusy] = useState(true);
   const [saveBtnStatus, setSaveBtnStatus] = useState(false);
   const [items, setItems] = useState([]);
-  // const [items, setItems] = useState([
-  //   {
-  //     id: uid(6),
-  //     sno: uid(6),
-  //     itemDes: itemDes,
-  //     m3cft: m3cft,
-  //     unit: data.items[0].cubic_meter,
-  //     unitcft: unitcft,
-  //     unitRate: unitRate,
-  //     total: total,
-  //     remarks: remarks,
-  //   },
-  // ]);
-
-  const subtotal = items.reduce((prev, curr) => {
-    return prev + Number(curr.total);
-  }, 0);
-
-  const vatRate = (vat * subtotal) / 100;
-  const grandTotal = subtotal + pumpCharge + vatRate + prevDue;
-  // const payableAmount = grandTotal - rcvAmount;
-  const payableAmount = grandTotal;
-
-  // useEffect(() => {
-  //   setUnit(items.unit);
-  //   setUnitRate(items.unitRate);
-  // }, [items]);
 
   useEffect(() => {
     setCustomerName(data.company.name);
@@ -88,6 +61,12 @@ export default function MakeBillModal({
         };
       })
     );
+
+    data.items.map(data=>{
+      const convertDta= parseFloat(data.pump_charge)
+      setPumpCharge((prev) => prev + parseFloat(convertDta))
+    })
+   
     // setBillNumber(sellsReportList.length + 1);
     // if (data.materials_quantity < 1000) {
     //   setPumpCharge(1000);
@@ -96,30 +75,40 @@ export default function MakeBillModal({
     isBusy(false);
   }, [data]);
 
-  useEffect(() => {
-    items.map((val) => {
-      if (val.unit * 35.315 < 1000) {
-        setPumpCharge((prev)=> prev+15000);
-      }
-    });
-  }, [items]);
 
-  const addItemHandler = () => {
-    const id = uid(6);
-    setItems((prevItem) => [
-      ...prevItem,
-      {
-        id: id,
-        itemDes: itemDes,
-        m3cft: m3cft,
-        unit: unit,
-        unitcft: unitcft,
-        unitRate: unitRate,
-        total: total,
-        remarks: remarks,
-      },
-    ]);
-  };
+
+  const subtotal = data.total_amount-pumpCharge;
+  const vatRate = (vat * subtotal) / 100;
+  const grandTotal =Math.floor( subtotal + pumpCharge + vatRate + prevDue);
+  // const payableAmount = grandTotal - rcvAmount;
+  const payableAmount = Math.floor(grandTotal);
+
+  // useEffect(() => {
+  //   setUnit(items.unit);
+  //   setUnitRate(items.unitRate);
+  // }, [items]);
+
+  // useEffect(() => {
+  //   data?.items?.map((val) => {
+  //     const pdata = val.pump_chrage;
+  //     console.log(pdata);
+  //     if (pdata) {
+  //       return (prev) => prev + parseFloat(val.pump_chrage);
+  //     }
+  //   });
+  // },[data]);
+
+  // console.log(pumpCharge);
+
+  // useEffect(() => {
+  //   items.map((val) => {
+  //     if (val.pump_chrage) {
+  //       console.log(val.pump_chrage)
+  //       setPumpCharge((prev)=> prev+val.pump_chrage);
+  //     }
+  //   });
+  // }, [items]);
+
   const deleteItemHandler = (id) => {
     setItems((prevItem) => prevItem.filter((item) => item.id !== id));
   };
@@ -170,7 +159,7 @@ export default function MakeBillModal({
       unit_rate: items[0].unitRate,
       total_amount: payableAmount,
       remarks: items[0].remarks,
-      pump_charge: pumpCharge ? true : false,
+      pump_charge: pumpCharge ,
       vat: vat,
       status: 1,
       wid: data.id,
@@ -197,10 +186,6 @@ export default function MakeBillModal({
     // dispatch(saveSellsReport(SellsReportdata));
 
     // setReviewInvoice(true);
-  };
-
-  const onChange = (date, dateString) => {
-    setDueDate(date);
   };
 
   return (

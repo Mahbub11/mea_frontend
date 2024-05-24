@@ -171,11 +171,7 @@ export default function InvoiceBillItems({ data }) {
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
         <p>
-            {record.pump_charge ? (
-              <Tag icon={<CheckCircleOutlined />} color="success"></Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="error"></Tag>
-            )}
+            {record.pump_charge }
           </p>
         </div>
       ),

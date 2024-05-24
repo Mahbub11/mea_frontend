@@ -26,6 +26,8 @@ export default function InvoiceListShow({
     setProjectsData(projects);
   }, [projects]);
 
+  console.log(projectsData)
+
   const columns = [
     {
       title: "ID",
@@ -157,11 +159,7 @@ export default function InvoiceListShow({
       render: (level, record) => (
         <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
           <p>
-            {record.pump_charge ? (
-              <Tag icon={<CheckCircleOutlined />} color="success"></Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="error"></Tag>
-            )}
+            {record.pump_charge }
           </p>
         </div>
       ),

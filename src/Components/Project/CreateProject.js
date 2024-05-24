@@ -77,7 +77,7 @@ export default function CreateProject({ handleReFetch }) {
               <div>
                 <p>* Project Address</p>
                 <Input
-                  value={name}
+                  value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   className="h-10"
                   placeholder="Enter Project Address"
