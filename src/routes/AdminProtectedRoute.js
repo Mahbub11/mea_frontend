@@ -13,7 +13,7 @@ export const AdminProtectedRoute = ({ children }) => {
     );
     // user is not authenticated
     return <Navigate to="/auth/signin" />;
-  } else if (userInfo.id === "2") {
+  } else if (userInfo) {
     return children;
   }
 };
