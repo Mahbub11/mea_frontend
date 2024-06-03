@@ -15,7 +15,7 @@ import { getSellsList } from "../redux/slices/sells";
 import { getCompanyList } from "../redux/slices/company";
 import { getProjectList } from "../redux/slices/project";
 import { getSellsReportList } from "../redux/slices/sellsReport";
-import { API_LEVEL, APP_URL } from "../config";
+import { API_LEVEL, APP_URL, LIVE_URL } from "../config";
 const { Header, Sider, Content } = Layout;
 const { useBreakpoint } = Grid;
 
@@ -99,7 +99,7 @@ export default function SectionLayout() {
               children: [
                 {
                   label: (
-                    <a href={`${APP_URL}app/listing`} rel="noopener noreferrer">
+                    <a href={`${LIVE_URL}app/listing`} rel="noopener noreferrer">
                       Casting List
                     </a>
                   ),
@@ -109,7 +109,7 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${APP_URL}app/billing`} rel="noopener noreferrer">
+                    <a href={`${LIVE_URL}app/billing`} rel="noopener noreferrer">
                       Billing List
                     </a>
                   ),
@@ -120,7 +120,7 @@ export default function SectionLayout() {
                 {
                   label: (
                     <a
-                      href={`${APP_URL}app/invoice-list`}
+                      href={`${LIVE_URL}app/invoice-list`}
                       rel="noopener noreferrer"
                     >
                       Invoice List
@@ -133,7 +133,7 @@ export default function SectionLayout() {
                 {
                   label: (
                     <a
-                      href={`${APP_URL}app/casting-analysis`}
+                      href={`${LIVE_URL}app/casting-analysis`}
                       rel="noopener noreferrer"
                     >
                       Casting Analysis
@@ -154,7 +154,7 @@ export default function SectionLayout() {
               children: [
                 {
                   label: (
-                    <a href={`${APP_URL}app/company`} rel="noopener noreferrer">
+                    <a href={`${LIVE_URL}app/company`} rel="noopener noreferrer">
                       Company
                     </a>
                   ),
@@ -164,7 +164,7 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${APP_URL}app/project`} rel="noopener noreferrer">
+                    <a href={`${LIVE_URL}app/project`} rel="noopener noreferrer">
                       Project
                     </a>
                   ),
