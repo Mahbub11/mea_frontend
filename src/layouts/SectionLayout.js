@@ -76,12 +76,12 @@ export default function SectionLayout() {
               icon: <HomeOutlined />,
             },
             {
-              label: <a href={`${APP_URL}app/inventory`}>Inventory</a>,
+              label: <a href={`/app/inventory`}>Inventory</a>,
               key: "Work_Order",
               icon: <HomeOutlined />,
             },
             {
-              label: <a href={`${APP_URL}app/work-order`}>Work Order</a>,
+              label: <a href={`/app/work-order`}>Work Order</a>,
               key: "Work_Order",
               icon: <HomeOutlined />,
             },
@@ -99,7 +99,7 @@ export default function SectionLayout() {
               children: [
                 {
                   label: (
-                    <a href={`${LIVE_URL}app/listing`} rel="noopener noreferrer">
+                    <a href={`/app/listing`} rel="noopener noreferrer">
                       Casting List
                     </a>
                   ),
@@ -109,7 +109,7 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${LIVE_URL}app/billing`} rel="noopener noreferrer">
+                    <a href={`/app/billing`} rel="noopener noreferrer">
                       Billing List
                     </a>
                   ),
@@ -120,7 +120,7 @@ export default function SectionLayout() {
                 {
                   label: (
                     <a
-                      href={`${LIVE_URL}app/invoice-list`}
+                      href={`/app/invoice-list`}
                       rel="noopener noreferrer"
                     >
                       Invoice List
@@ -154,7 +154,7 @@ export default function SectionLayout() {
               children: [
                 {
                   label: (
-                    <a href={`${LIVE_URL}app/company`} rel="noopener noreferrer">
+                    <a href={`/app/company`} rel="noopener noreferrer">
                       Company
                     </a>
                   ),
@@ -164,7 +164,7 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a href={`${LIVE_URL}app/project`} rel="noopener noreferrer">
+                    <a href={`/app/project`} rel="noopener noreferrer">
                       Project
                     </a>
                   ),
