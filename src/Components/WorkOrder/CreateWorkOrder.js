@@ -36,6 +36,8 @@ export default function CreateWorkOrder({
 
   const current = new Date();
 
+  const {showWorkOrder  } = useSelector((state) => state.workOrder);
+
   const [dueDate, setDueDate] = useState();
   const [reviewInvoice, setReviewInvoice] = useState(false);
   const [busy, isBusy] = useState(true);
@@ -89,6 +91,13 @@ export default function CreateWorkOrder({
     setContactName(data.project.site_eng_name);
     setContactNo(data.project.site_eng_phone);
   }, [data]);
+
+  useEffect(()=>{
+    
+    if (showWorkOrder) {
+      setReviewInvoice(true);
+    }
+  },[showWorkOrder])
 
   const addItemHandler = () => {
     setItems((prevItem) => [
@@ -233,8 +242,9 @@ export default function CreateWorkOrder({
     dispatch(saveWorkOrder(orderData));
     setWorkOrderData(orderData);
 
-    setReviewInvoice(true);
   };
+
+  console.log(showWorkOrder);
 
   const onChange = (date, dateString) => {
     setDueDate(dateString);
@@ -472,7 +482,7 @@ export default function CreateWorkOrder({
             <Modal
               footer={false}
               onCancel={() => setReviewInvoice(false)}
-              style={{ width: "70rem" }}
+              style={{ width: "100%" }}
               open={reviewInvoice}
             >
               <ReviewWorkOrder

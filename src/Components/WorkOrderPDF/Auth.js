@@ -41,7 +41,7 @@ const Auth = () => (
       </View>
       <View>
         <Text style={styles.company}>A.H.M. AHSANUL KABIR</Text>
-        <Text>Managing Director</Text>
+        <Text>CEO</Text>
         <Text>Modern Engineers & Architects</Text>
       </View>
     </View>

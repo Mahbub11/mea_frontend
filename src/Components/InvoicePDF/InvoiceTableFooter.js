@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   },
   total: {
     width: "30%",
-    textAlign: "right",
-    paddingRight: 8,
+    textAlign: "left",
+    paddingLeft: 8,
   },
 });
 

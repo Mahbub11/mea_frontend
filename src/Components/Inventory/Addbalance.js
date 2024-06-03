@@ -1,14 +1,14 @@
 import { Button, Input } from "antd";
 import React, { useState } from "react";
 import { uid } from "uid";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import InventoryItem from "./InventoryItem";
 import { AddMiscellaneous } from "./AddMiscellaneous";
-import {sentoInventory} from '../../redux/slices/inventory'
+import { sentoInventory } from "../../redux/slices/inventory";
+import { CloseOutlined } from "@ant-design/icons";
 
-export default function Addbalance() {
-
-  const dispatch= useDispatch()
+export default function Addbalance({ handleInvoiceReFetch }) {
+  const dispatch = useDispatch();
   const [items, setItems] = useState([
     {
       id: uid(6),
@@ -16,10 +16,10 @@ export default function Addbalance() {
       itemName: "",
       rate: "",
       amount: "",
-      misItemName:''
+      misItemName: "",
     },
   ]);
- 
+
   const addItemHandler = () => {
     setItems((prevItem) => [
       ...prevItem,
@@ -29,7 +29,7 @@ export default function Addbalance() {
         itemName: "",
         rate: "",
         amount: "",
-        misItemName:''
+        misItemName: "",
       },
     ]);
   };
@@ -74,11 +74,10 @@ export default function Addbalance() {
     }
   };
 
-  const handleSave=()=>{
-    dispatch(sentoInventory(items))
-  }
-
-  console.log(items);
+  const handleSave = () => {
+    console.log(items);
+    dispatch(sentoInventory(items));
+  };
 
   return (
     <div>
@@ -86,6 +85,9 @@ export default function Addbalance() {
         <h1 className="font-poppinsBold text-[25px] text-center">
           Add Purchase Items
         </h1>
+        <div className="flex justify-end mt-[-2rem]">
+          <CloseOutlined onClick={handleInvoiceReFetch}></CloseOutlined>
+        </div>
 
         <div className="mt-10 flex gap-5 px-2 py-2 flex-wrap justify-center w-full">
           {items.map((item) => (
@@ -100,24 +102,26 @@ export default function Addbalance() {
               onEdtiItem={edtiItemHandler}
             />
           ))}
-
-         
         </div>
-        <div className="mt-10 ml-3 w-full m-auto flex  gap-5 justify-center">
+
+        <div className="flex mt-10 w-full justify-center gap-5">
           <button
             onClick={addItemHandler}
-            className="bg-blue-300 rounded-md px-10 py-1  text-white"
+            className="bg-blue-300 rounded-md px-10 py-1 
+             text-white "
           >
             Add Item
           </button>
+        </div>
 
-          <button
+        <div className="mt-10 flex justify-end">
+        <button
             onClick={handleSave}
-            className="bg-blue-300 rounded-md px-10 py-1  text-white"
+            className="bg-blue-300 rounded-md px-10 py-1 
+             text-white"
           >
-           Save Items
+            Save Items
           </button>
-         
         </div>
       </div>
     </div>

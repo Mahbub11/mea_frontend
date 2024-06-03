@@ -1,4 +1,4 @@
-import { Modal, Skeleton } from "antd";
+import { Drawer, Modal, Skeleton } from "antd";
 import Search from "antd/es/input/Search";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { getInvoiceList } from "../../redux/slices/invoice";
 import { getSellsReportList } from "../../redux/slices/sellsReport";
 import BillingList from "../../Components/Billing/BillingList";
 import EditBillData from "../../Components/Billing/EditBillData";
+import CastingItems from "../../Components/Casting/CastingItems";
 
 function Billing(props) {
   const dispatch = useDispatch();
@@ -16,8 +17,9 @@ function Billing(props) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
   const [showEdit, isShowEdit] = useState(false);
   const [editData, setEditData] = useState();
-  const [invoiceData, setInvoiceData] = useState();
-  const [showInvoiceModal, setShowInvoiceModal] = useState(false);
+  const [drawer, setDrawer] = useState(false);
+  const [castingItems, setCastingItems] = useState();
+  const [projectDetails, setProjectDetails] = useState()
   const config = isMobile
     ? { maxWidth: "98vw", padding: 0 }
     : { maxWidth: "80vw" };
@@ -64,6 +66,13 @@ function Billing(props) {
     isBusy(true);
     isShowEdit(false);
   };
+  const openProjectList = (id) => {
+    const data = filterData.filter((val) => val.id === id)[0];
+    setCastingItems(data.workorder);
+    setProjectDetails(data.project)
+       setDrawer(true);
+  };
+
 
   return (
     <div>
@@ -84,6 +93,7 @@ function Billing(props) {
             </div>
             <div className="mt-2  sm:w-full m-auto">
               <BillingList
+                openProjectList={openProjectList}
                 handleEditBill={handleEditBill}
                 list={filterData}
                 handleReFetch={handleReFetch}
@@ -110,6 +120,15 @@ function Billing(props) {
               </div>
             </Modal>
           </div>
+
+          <Drawer
+            closable={true}
+            width={1024}
+            onClose={() => setDrawer(false)}
+            open={drawer}
+          >
+            <CastingItems project={projectDetails} data={castingItems}></CastingItems>
+          </Drawer>
         </div>
       )}
     </div>

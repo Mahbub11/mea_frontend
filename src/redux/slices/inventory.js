@@ -9,8 +9,8 @@ import { API_LEVEL } from "../../config";
 const initialState = {
   loading: true,
   error: null,
-  inventory:null,
-  purchaseHistory:null
+  inventory: null,
+  purchaseHistory: null,
 };
 
 const slice = createSlice({
@@ -22,8 +22,15 @@ const slice = createSlice({
     },
     getResultRequestSuccess: (state, action) => {
       state.loading = false;
-      state.inventory = action.payload.payload;
-      state.purchaseHistory = action.payload.payload;
+      state.inventory = action.payload;
+
+      console.log( action.payload)
+
+    },
+    getResultRequestPurchaseHistorySuccess: (state, action) => {
+      state.loading = false;
+      state.purchaseHistory = action.payload;
+
     },
     getResultRequestFailed: (state, action) => {
       state.error = action.payload.payload;
@@ -41,13 +48,47 @@ export const sentoInventory = (items) => async (dispatch) => {
   try {
     dispatch(slice.actions.getResultRequest());
     axiosInstance
-      .post(`${API_LEVEL}/inventory/create-item`,{items:items})
+      .post(`${API_LEVEL}/inventory/create-item`, { items: items })
       .then((response) => {
-        // dispatch(
-        //   slice.actions.setInvoiceList({
-        //     payload: response.data.data,
-        //   })
-        // );
+        dispatch(ShowNotification({ severity: "success", message:'Item Added' }));
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    dispatch(ShowNotification({ severity: "error", message: error.message }));
+  }
+};
+
+export const getInventory = (items) => async (dispatch) => {
+  try {
+    dispatch(slice.actions.getResultRequest());
+    axiosInstance
+      .get(`${API_LEVEL}/inventory/get`)
+      .then((response) => {
+        dispatch(
+          slice.actions.getResultRequestSuccess(response.data.data,)
+        );
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    dispatch(ShowNotification({ severity: "error", message: error.message }));
+  }
+};
+export const getPurchaseList = (items) => async (dispatch) => {
+  try {
+    dispatch(slice.actions.getResultRequest());
+    axiosInstance
+      .get(`${API_LEVEL}/inventory/get-purchase`)
+      .then((response) => {
+        dispatch(
+          slice.actions.getResultRequestPurchaseHistorySuccess
+          (response.data.data)
+        );
       })
 
       .catch((error) => {

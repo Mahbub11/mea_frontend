@@ -6,6 +6,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import SectionLayout from "../layouts/SectionLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import SignIn from "../pages/Auth/SignIn";
+import { AdminProtectedRoute } from "./AdminProtectedRoute";
 
 const Loadable = (Component) => (props) => {
   return (
@@ -41,7 +42,9 @@ export default function Router() {
     },
     {
       path: "/app",
-      element: <SectionLayout></SectionLayout>,
+      element:<AdminProtectedRoute>
+         <SectionLayout></SectionLayout>
+      </AdminProtectedRoute>,
       children: [
         { path: "", element: <Dashboard></Dashboard> },
         { path: "inventory", element: <Inventory></Inventory> },

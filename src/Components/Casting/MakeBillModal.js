@@ -23,14 +23,6 @@ export default function MakeBillModal({
   const current = new Date();
   const [itemDes, setItemDes] = useState("c-35");
   const [projectName, setProjectName] = useState();
-  const [dueDate, setDueDate] = useState();
-  const [unit, setUnit] = useState();
-  const [m3cft, setm3cft] = useState(35.315);
-  const [unitRate, setUnitRate] = useState(360);
-  const [total, setTotal] = useState(0);
-  const [remarks, setRemarks] = useState("");
-  const [unitcft, setUnitCft] = useState();
-  const [discount, setDiscount] = useState("");
   const [vat, setVat] = useState(0);
   const [pumpCharge, setPumpCharge] = useState(0);
   const [rcvAmount, setRCVAmount] = useState(0);
@@ -41,13 +33,16 @@ export default function MakeBillModal({
   const [saveBtnStatus, setSaveBtnStatus] = useState(false);
   const [items, setItems] = useState([]);
 
+
+  console.log(data)
+
+  
   useEffect(() => {
     setCustomerName(data.company.name);
     setProjectName(data.project.name);
     setAddress(data.company.address);
-    setUnit(data.items[0].cubic_meter);
     setItems(
-      data.items.map((data, key) => {
+      data.workOrderItems.map((data, key) => {
         return {
           id: uid(6),
           sno: uid(6),
@@ -57,23 +52,20 @@ export default function MakeBillModal({
           unitcft: data.materials_quantity,
           unitRate: data.materials_rate,
           total: data.work_order_amount,
-          remarks: remarks,
+          pump_charge:data.pump_charge
         };
       })
     );
 
-    data.items.map(data=>{
+    data.workOrderItems.map(data=>{
       const convertDta= parseFloat(data.pump_charge)
       setPumpCharge((prev) => prev + parseFloat(convertDta))
     })
    
-    // setBillNumber(sellsReportList.length + 1);
-    // if (data.materials_quantity < 1000) {
-    //   setPumpCharge(1000);
-    // }
-
     isBusy(false);
   }, [data]);
+
+  console.log(items)
 
 
 
@@ -164,6 +156,7 @@ export default function MakeBillModal({
       status: 1,
       wid: data.id,
     };
+
 
     axiosInstance
       .post(`${API_LEVEL}/sells-report/create`, SellsReportdata)

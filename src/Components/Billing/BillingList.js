@@ -20,6 +20,7 @@ export default function BillingList({
   list: projects,
   handleEditBill,
   handleReFetch,
+  openProjectList
 }) {
   const [page, setPage] = useState(5);
   const [current, setCurrent] = useState(1);
@@ -39,9 +40,17 @@ export default function BillingList({
       defaultSortOrder: "descend",
       sorter: (a, b) => a.id - b.id,
       render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] ">
-          <p>B-{record.id}</p>
-        </div>
+        <div
+        onClick={(e) => openProjectList(record.id)}
+        className="cursor-pointer font-montserrat font-[400] "
+      >
+        <button
+          // onClick={(e) => openProjectList(record.id)}
+          className="sm:text-[15px]  font-montserrat font-[400] flex gap-2"
+        >
+          <p>C-{record.id}</p>
+        </button>
+      </div>
       ),
     },
     {
@@ -112,30 +121,6 @@ export default function BillingList({
       ),
     },
     {
-      title: "Unit",
-      dataIndex: "unit",
-      key: "unit",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat  text-[13px]">
-          <Tag color="blue">
-            <p>{Math.round(record.unit * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
-    {
-      title: "Unit Rate(tk)",
-      dataIndex: "unit_rate",
-      key: "unit_rate",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat text-[13px]">
-          <Tag color="geekblue">
-            <p>{Math.round(record.unit_rate * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
-    {
       title: "Vat",
       dataIndex: "vat",
       key: "vat",
@@ -147,22 +132,7 @@ export default function BillingList({
         </div>
       ),
     },
-    {
-      title: "Pump Charge",
-      dataIndex: "pump_charge",
-      key: "pump_charge",
-      render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
-          <p>
-            {record.pump_charge ? (
-              <Tag icon={<CheckCircleOutlined />} color="success"></Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="error"></Tag>
-            )}
-          </p>
-        </div>
-      ),
-    },
+    
     {
       title: "Total Ammount(tk)",
       dataIndex: "total_amount",

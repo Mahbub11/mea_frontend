@@ -78,7 +78,7 @@ export default function InvoiceBillItems({ data }) {
             {parseInt(record.materials_category) === 21
               ? (record.cubic_meter * 1075) / 1000
               : parseInt(record.materials_category) === 25
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 1040) / 1000).toFixed(2)
               : parseInt(record.materials_category) === 28
               ? (record.cubic_meter * 1040) / 1000
               : parseInt(record.materials_category) === 30
@@ -102,7 +102,7 @@ export default function InvoiceBillItems({ data }) {
             {parseInt(record.materials_category) === 21
               ? Math.floor((record.cubic_meter * 865) / 3)
               : parseInt(record.materials_category) === 25
-              ? (record.cubic_meter * 850) / 35
+              ? ((record.cubic_meter * 850) / 35).toFixed(2)
               : parseInt(record.materials_category) === 28
               ? Math.floor((record.cubic_meter * 820) / 35)
               : parseInt(record.materials_category) === 30
@@ -167,12 +167,10 @@ export default function InvoiceBillItems({ data }) {
     {
       title: "Pump Charge",
       dataIndex: "pump_charge",
-      key: "pump_charge", 
+      key: "pump_charge",
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
-        <p>
-            {record.pump_charge }
-          </p>
+          <p>{record.pump_charge}</p>
         </div>
       ),
     },
@@ -206,7 +204,7 @@ export default function InvoiceBillItems({ data }) {
       <div>
         <div className=" w-full mt-5 flex-col gap-5 justify-center m-auto">
           <Table
-            dataSource={data.workorder.items}
+            dataSource={data.workOrderItems}
             columns={columns}
             style={{ fontSize: "20px" }}
             size="middle"
@@ -247,10 +245,30 @@ export default function InvoiceBillItems({ data }) {
           <h2 className="font-poppinsBold">Additional Info</h2>
           <div className="mt-5">
             <div className="flex-col gap-5">
-              <h2>Order Date: <span className="font-[700]">{moment(data.workorder.order_date).format("DD-MM-YYYY")}</span></h2>
-              <h2>Delivery Date: <span className="font-[700]">{moment(data.workorder.delivery_date).format("DD-MM-YYYY")}</span></h2>
-              <h2>Site Eng. Name: <span className="font-[700]">{data.workorder.site_eng_name}</span></h2>
-              <h2>Site Eng. Phone: <span className="font-[700]">{data.workorder.site_eng_phone}</span></h2>
+              <h2>
+                Order Date:{" "}
+                <span className="font-[700]">
+                  {moment(data.workorder.order_date).format("DD-MM-YYYY")}
+                </span>
+              </h2>
+              <h2>
+                Delivery Date:{" "}
+                <span className="font-[700]">
+                  {moment(data.workorder.delivery_date).format("DD-MM-YYYY")}
+                </span>
+              </h2>
+              <h2>
+                Site Eng. Name:{" "}
+                <span className="font-[700]">
+                  {data.workorder.site_eng_name}
+                </span>
+              </h2>
+              <h2>
+                Site Eng. Phone:{" "}
+                <span className="font-[700]">
+                  {data.workorder.site_eng_phone}
+                </span>
+              </h2>
             </div>
           </div>
         </div>

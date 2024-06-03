@@ -89,21 +89,6 @@ function CastingPage(props) {
   const createBill = async (id) => {
     const data = workOrder.find((item) => item.id === id);
     setInvoiceData(data);
-
-    // const prevDue = workOrder.filter(
-    //   (val) =>
-    //     val.id !== id &&
-    //     val.cid === data.company.id &&
-    //     val.pid === data.project.id &&
-    //     (val.status === 0 || val.state === 3)
-    // );
-
-    // const finalCalculateVal = prevDue.map((val) => ({
-    //   ...val,
-    //   due: val.total_amount - val.paid_amount,
-    // }));
-
-    // setPreviousDue(finalCalculateVal);
     setShowInvoiceModal(true);
   };
 
@@ -123,8 +108,10 @@ function CastingPage(props) {
     setShowWorkOrderModal(false);
   };
   const openProjectList = (id) => {
+
     setDrawer(true);
     const data = filterData.filter((val) => val.id === id)[0];
+    console.log(data)
     setCastingItems(data);
   };
 

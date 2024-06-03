@@ -197,8 +197,8 @@ export default function CastingList({
                   <Popconfirm
                     okType="danger"
                     onConfirm={(e) => handleDelete(record.id)}
-                    title="Delete the Sell"
-                    description="Are you sure to delete this Sell?"
+                    title="Delete Item"
+                    description="If deleted consume inventory items will restore"
                   >
                     <Button className="border-[1px]  cursor-pointer ">
                       <DeleteOutlined

@@ -9,6 +9,8 @@ import sells from './slices/sells';
 import sellsReport from './slices/sellsReport';
 import invoice from './slices/invoice';
 import workOrder from './slices/workOrder';
+import inventory from './slices/inventory'
+import auth from './slices/auth';
 
 
 
@@ -30,7 +32,9 @@ const rootReducer = combineReducers({
   sells:sells,
   sellsReport:sellsReport,
   invoice:invoice,
-  workOrder:workOrder
+  workOrder:workOrder,
+  inventory:inventory,
+  auth:auth,
   
 });
 

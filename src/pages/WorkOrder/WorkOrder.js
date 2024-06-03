@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import WorkOrderModal from "../../Components/WorkOrder/WorkOrderModal";
 import CreateWorkOrder from "../../Components/WorkOrder/CreateWorkOrder";
+import { resetWorkOrderData } from "../../redux/slices/workOrder";
 
 export default function WorkOrder() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ export default function WorkOrder() {
   }, [company]);
 
   const createWorkOrder = (id) => {
+    dispatch(resetWorkOrderData())
     const data={
       company:companyInfo,
       project:project.filter(val=> val.id===projectId)[0]
@@ -55,6 +57,12 @@ export default function WorkOrder() {
   const workOrderModal = () => {
     setShowWorkOrderModal(false);
   };
+
+  const workOrderModalActivity=()=>{
+    window.location.reload()
+    setShowWorkOrderModal(false)
+      dispatch(resetWorkOrderData())
+  }
 
 
   return (
@@ -135,7 +143,7 @@ export default function WorkOrder() {
           closable={true}
           width="md:w-[100%] sm:w-full"
           open={showWorkOrderModal}
-          onCancel={() => setShowWorkOrderModal(false)}
+          onCancel={workOrderModalActivity}
           className=" top-[1rem] m-auto z-10"
         >
           <div>

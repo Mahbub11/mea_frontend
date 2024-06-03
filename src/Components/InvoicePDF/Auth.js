@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet } from "@react-pdf/renderer";
+import { Text, View, StyleSheet,Image } from "@react-pdf/renderer";
+import SignatureKabir from "../../Assets/Image/signatureKabir.png"; 
 
 const styles = StyleSheet.create({
   row: {
@@ -16,6 +17,11 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     width: "100%",
   },
+  logo: {
+    width: "60px",
+    height: "60px",
+  
+  },
 });
 
 const Auth = () => (
@@ -25,6 +31,9 @@ const Auth = () => (
       <Text style={styles.reportTitle}>Received By</Text>
     </View>
     <View>
+    <View style={styles.sapce}>
+      <Image style={styles.logo} src={SignatureKabir} />
+      </View>
       <View style={styles.dash}></View>
       <Text style={styles.reportTitle}>Authorized Signature</Text>
     </View>

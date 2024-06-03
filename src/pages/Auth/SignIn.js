@@ -2,6 +2,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Input, Spin, notification } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axios";
+import { API_LEVEL } from "../../config";
 
 export default function SignIn() {
   const [api, contextHolder] = notification.useNotification();
@@ -21,17 +23,33 @@ export default function SignIn() {
   const handleSignIn = async () => {
     if (email && password) {
       if (ValidateEmail(email)) {
-        // console.log(email, password, name, passwor2);
-      }
-      setLoading(true);
-
-      if(email==='admin@mea.com' && password==='123456'){
-        navigate("/app");
-        window.location.reload(true);
-
+        setLoading(true);
+        const config = { headers: { "Content-Type": "application/json" } };
+        const signUpdata = {
+          email: email,
+          password: password,
+        };
+        await axiosInstance
+          .post(`${API_LEVEL}/auth/signin`, signUpdata, config)
+          .then(async (res) => {
+            if (res.status === 200) {
+              openNotification("success", "Success !", "Logged In Success");
+              localStorage.setItem("access", res.data.token);
+  
+              navigate("/app");
+              window.location.reload(true);
+            }
+            setLoading(false);
+          })
+          .catch((error) => {
+            openNotification("error", "Error !", error.error);
+            setLoading(false);
+          });
+      } else {
+        openNotification("error", "Error !", "Invalid email address");
       }
     } else {
-      openNotification("error", "Error !", "All field Rquired");
+      openNotification("error", "Error !", "All fields required");
     }
   };
 

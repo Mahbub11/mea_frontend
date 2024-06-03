@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Pagination, PaginationProps, Row, Select, Table } from "antd";
+import moment from "moment";
 
 const data = [
   {
@@ -98,6 +99,8 @@ const columns = [
   {
     title: "Date",
     dataIndex: "date",
+    sorter: (a, b) => a.id - b.id,
+    defaultSortOrder: "descend",
     key: "date",
     render: (id, record) => (
       <div className="w-[5rem] text-[13px]">
@@ -107,7 +110,7 @@ const columns = [
 
           // </Link>
           <button className=" font-montserrat font-[400] flex gap-2">
-            <h1>{record.date}</h1>
+            <h1>{moment(record.createdAt).format('DD-MM-YY')}</h1>
           </button>
         }
       </div>
@@ -180,26 +183,26 @@ const columns = [
     render: (level, record) => (
       <div className="font-[500] cursor-pointer font-montserrat  text-[13px]">
       <div className="">
-            <div>Amount: {record.brick_chips.amount}</div>
-            <div>Rate: {record.brick_chips.rate}</div>
+            <div>Amount: {record.bricks_chips.amount}</div>
+            <div>Rate: {record.bricks_chips.rate}</div>
           </div>
       </div>
     ),
   },
   {
-    title: "Others",
+    title: "miscellaneous",
     dataIndex: "paid_amount",
     key: "paid_amount",
     fixed: "right",
     render: (level, record) => (
       <div className="font-[600] cursor-pointer font-montserrat text-[13px] overflow-y-scroll">
         <span>
-          {record.other.map((item, index) => {
+          {record.miscellaneous.map((item, index) => {
             return (
               <div key={index}>
                 <span>
                   <span>
-                    {item.name}: {item.price}tk
+                    {item.misItemName}: {item.amount}tk
                   </span>
                 </span>
               </div>
@@ -210,10 +213,12 @@ const columns = [
     ),
   },
 ];
-export default function PurchaseHistory() {
+export default function PurchaseHistory({purchaseList}) {
+
+  console.log(purchaseList)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
   return (
-    <div className="mt-5">
+    <div className="mt-5 ">
       <div id="journal-scroll" className="sm:w-full  m-auto ">
         <Table
           className="text-[10px]"
@@ -226,7 +231,7 @@ export default function PurchaseHistory() {
           //   };
           // }}
 
-          dataSource={data}
+          dataSource={purchaseList}
           columns={columns}
           style={{ fontSize: "20px" }}
           size="middle"

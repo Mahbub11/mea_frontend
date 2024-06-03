@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import moment from "moment";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-export default function CastingItems({ data }) {
+export default function CastingItems({ data,project }) {
   console.log(data);
+  
 
   const [current, setCurrent] = useState(1);
   const [page, setPage] = useState(5);
@@ -100,9 +101,9 @@ export default function CastingItems({ data }) {
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
             {parseInt(record.materials_category) === 21
-              ? Math.floor((record.cubic_meter * 865) / 3)
+              ? Math.floor((record.cubic_meter * 865) / 3).toFixed(2)
               : parseInt(record.materials_category) === 25
-              ? (record.cubic_meter * 850) / 35
+              ? Math.floor((record.cubic_meter * 850) / 35)
               : parseInt(record.materials_category) === 28
               ? Math.floor((record.cubic_meter * 820) / 35)
               : parseInt(record.materials_category) === 30
@@ -124,17 +125,17 @@ export default function CastingItems({ data }) {
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
             {parseInt(record.materials_category) === 21
-              ? (record.cubic_meter * 1075) / 1000
+              ? (record.cubic_meter * 370) / 1000
               : parseInt(record.materials_category) === 25
-              ? (record.cubic_meter * 1040) / 1000
+              ? (record.cubic_meter * 385) / 1000
               : parseInt(record.materials_category) === 28
-              ? (record.cubic_meter * 1040) / 1000
+              ? (record.cubic_meter * 400) / 1000
               : parseInt(record.materials_category) === 30
-              ? (record.cubic_meter * 1040) / 1000
+              ? (record.cubic_meter * 400) / 1000
               : parseInt(record.materials_category) === 32
-              ? (record.cubic_meter * 1040) / 1000
+              ? (record.cubic_meter * 410) / 1000
               : parseInt(record.materials_category) === 35
-              ? (record.cubic_meter * 1060) / 1000
+              ? (record.cubic_meter * 430) / 1000
               : 0}
           </p>
         </div>
@@ -198,13 +199,14 @@ export default function CastingItems({ data }) {
       <h1 className="text-center">
         Items Of :
         <span className="font-[700] bg-gray-100 px-1 py-1 rounded-md">
-          {data.project.name}
+          {data?.project?.name ? data.project.name :project.name}
         </span>
       </h1>
       <div>
         <div className=" w-full mt-5 flex-col gap-5 justify-center m-auto">
           <Table
-            dataSource={data.items}
+            dataSource={data.workOrderItems
+              }
             columns={columns}
             style={{ fontSize: "20px" }}
             size="middle"

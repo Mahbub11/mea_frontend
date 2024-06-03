@@ -42,8 +42,8 @@ function InvoiceList(props) {
     : { maxWidth: "80vw" };
 
   useEffect(() => {
-    dispatch(getSellsList());
-    dispatch(getInvoiceList());
+    // dispatch(getSellsList());
+    // dispatch(getInvoiceList());
     dispatch(getSellsReportList());
     isBusy(false);
   }, [busy, dispatch]);
@@ -117,7 +117,6 @@ function InvoiceList(props) {
   const openItems = (id) => {
     setDrawer(true);
     const data = filterData.filter((val) => val.id === id)[0];
-    console.log(data)
     setCastingItems(data);
   };
 
@@ -140,7 +139,7 @@ function InvoiceList(props) {
             </div>
             <div className="mt-2 md:w-[90%] sm:w-full m-auto">
               <InvoiceListShow
-               openItems={openItems}
+                openItems={openItems}
                 createInvoice={createInvoice}
                 // createWorkOrder={createWorkOrder}
                 list={filterData}

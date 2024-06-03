@@ -15,7 +15,11 @@ import { useDispatch } from "react-redux";
 import { deleteCompany } from "../../redux/slices/company";
 import { CSVLink } from "react-csv";
 
-export default function CastingAnalysisList({ list: projects, handleReFetch }) {
+export default function CastingAnalysisList({
+  list: projects,
+  handleReFetch,
+  openProjectList,
+}) {
   const [page, setPage] = useState(5);
   const [current, setCurrent] = useState(1);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
@@ -37,8 +41,8 @@ export default function CastingAnalysisList({ list: projects, handleReFetch }) {
       company: val.company.name,
       project: val.project.name,
       items: {
-        f:'fff',
-        d:'dddd'
+        f: "fff",
+        d: "dddd",
       },
       vat: val.vat,
       total_amount: val.total_amount,
@@ -65,8 +69,16 @@ export default function CastingAnalysisList({ list: projects, handleReFetch }) {
       defaultSortOrder: "descend",
       sorter: (a, b) => a.id - b.id,
       render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] ">
-          <p>C-{record.id}</p>
+        <div
+          onClick={(e) => openProjectList(record.id)}
+          className="cursor-pointer font-montserrat font-[400] "
+        >
+          <button
+            // onClick={(e) => openProjectList(record.id)}
+            className="sm:text-[15px]  font-montserrat font-[400] flex gap-2"
+          >
+            <p>C-{record.id}</p>
+          </button>
         </div>
       ),
     },
@@ -137,30 +149,7 @@ export default function CastingAnalysisList({ list: projects, handleReFetch }) {
         </div>
       ),
     },
-    {
-      title: "Unit",
-      dataIndex: "unit",
-      key: "unit",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat  text-[13px]">
-          <Tag color="blue">
-            <p>{Math.round(record.unit * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
-    {
-      title: "Unit Rate(tk)",
-      dataIndex: "unit_rate",
-      key: "unit_rate",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat text-[13px]">
-          <Tag color="geekblue">
-            <p>{Math.round(record.unit_rate * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
+
     {
       title: "Vat",
       dataIndex: "vat",
@@ -170,22 +159,6 @@ export default function CastingAnalysisList({ list: projects, handleReFetch }) {
           <Tag color="red">
             <p>{Math.round(record.vat * 100) / 100}%</p>
           </Tag>
-        </div>
-      ),
-    },
-    {
-      title: "Pump Charge",
-      dataIndex: "pump_charge",
-      key: "pump_charge",
-      render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
-          <p>
-            {record.pump_charge ? (
-              <Tag icon={<CheckCircleOutlined />} color="success"></Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="error"></Tag>
-            )}
-          </p>
         </div>
       ),
     },
@@ -258,7 +231,7 @@ export default function CastingAnalysisList({ list: projects, handleReFetch }) {
     <div className="m-auto flex flex-col justify-center sm:pb-5">
       <span className="px-2 py-2 self-end">
         <CSVLink
-         filename={"SES_sells_report.csv"}
+          filename={"SES_sells_report.csv"}
           className="bg-home px-2 hover:text-red-400 py-1 rounded-md"
           data={csvData}
         >

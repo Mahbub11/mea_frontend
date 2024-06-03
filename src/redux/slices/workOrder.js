@@ -10,6 +10,7 @@ const initialState = {
   loading: false,
   error: null,
   workOrder: [],
+  showWorkOrder: false,
 };
 
 const slice = createSlice({
@@ -24,6 +25,14 @@ const slice = createSlice({
     },
     setWorkOrderRequestFailed: (state, action) => {
       state.error = action.payload.payload;
+    },
+    setShowWorkOrderModal: (state, action) => {
+      state.showWorkOrder = true;
+    },
+    setResetData: (state, action) => {
+      state.error = []
+      state.workOrder = []
+      state.showWorkOrder = false
     },
   },
 });
@@ -60,6 +69,7 @@ export const saveWorkOrder = (data) => async (dispatch) => {
     axiosInstance
       .post(`${API_LEVEL}/work-order/create`, data)
       .then((response) => {
+        dispatch(slice.actions.setShowWorkOrderModal());
         dispatch(
           ShowNotification({
             severity: "success",
@@ -69,6 +79,8 @@ export const saveWorkOrder = (data) => async (dispatch) => {
       })
 
       .catch((error) => {
+
+        dispatch(slice.actions.setWorkOrderRequestFailed(error));
         dispatch(
           ShowNotification({ severity: "error", message: error.message })
         );
@@ -129,3 +141,14 @@ export const deleteWorkOrder = (id) => async (dispatch) => {
     dispatch(ShowNotification({ severity: "error", message: error.message }));
   }
 };
+
+
+export const resetWorkOrderData = (id) => async (dispatch) => {
+
+  try {
+    dispatch(slice.actions.setResetData());
+  } catch (error) {
+    
+  }
+
+}

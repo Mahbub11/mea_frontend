@@ -26,7 +26,7 @@ export default function InvoiceListShow({
     setProjectsData(projects);
   }, [projects]);
 
-  console.log(projectsData)
+
 
   const columns = [
     {

@@ -30,7 +30,13 @@ export default function InvoiceModal({
   previousDue,
 }) {
 
+  const [showData,setShowData]= useState()
 
+useEffect(()=>{
+
+  setShowData(data)
+
+},[data])
   const dispatch = useDispatch();
   const [customerName, setCustomerName] = useState();
   const [address, setAddress] = useState();
@@ -45,7 +51,6 @@ export default function InvoiceModal({
   const [total, setTotal] = useState(0);
   const [remarks, setRemarks] = useState("");
   const [unitcft, setUnitCft] = useState();
-  const [discount, setDiscount] = useState("");
   const [vat, setVat] = useState(0);
   const [pumpCharge, setPumpCharge] = useState(0);
   const [rcvAmount, setRCVAmount] = useState(0);
@@ -73,7 +78,7 @@ export default function InvoiceModal({
     setAddress(data.company.address);
     // setUnit(data.items[0].cubic_meter);
     setItems(
-      data.workorder.items.map((data, key) => {
+      data.workOrderItems.map((data, key) => {
         return {
           id: uid(6),
           sno: uid(6),
@@ -87,27 +92,23 @@ export default function InvoiceModal({
         };
       })
     );
-    data.workorder.items.map(data=>{
+  
+    data.workOrderItems.map(data=>{
       const convertDta= parseFloat(data.pump_charge)
       setPumpCharge((prev) => prev + parseFloat(convertDta))
     })
+
     isBusy(false);
   }, [data]);
 
-  useEffect(() => {
-    items.map((val) => {
-      if (val.unit * 35.315 < 1000) {
-        setPumpCharge((prev)=> prev+15000);
-      }
-    });
-  }, [items]);
+ 
 
-
+    
   const subtotal = data.workorder.total_amount-pumpCharge;
   const vatRate = (vat * subtotal) / 100;
-  const grandTotal =Math.floor( subtotal + pumpCharge + vatRate + prevDue);
-  // const payableAmount = grandTotal - rcvAmount;
-  const payableAmount = Math.floor(grandTotal);
+  const grandTotal =Math.floor( subtotal + pumpCharge + vatRate );
+  const netPay = grandTotal + prevDue - rcvAmount;
+  const payableAmount = Math.floor(netPay);
 
 
   // useEffect(() => {
@@ -229,7 +230,8 @@ export default function InvoiceModal({
   };
 
   const onChange = (date, dateString) => {
-    setDueDate(date);
+    
+    setDueDate(dateString);
   };
 
   return (
@@ -501,7 +503,8 @@ export default function InvoiceModal({
                   prevDue,
                 }}
                 items={items}
-                invoice={data}
+                invoice={showData}
+                dueDate={dueDate}
               ></ReviewInvoice>
             </Modal>
           </div>
