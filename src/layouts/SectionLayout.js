@@ -141,7 +141,7 @@ export default function SectionLayout() {
                 {
                   label: (
                     <a
-                      href={`${LIVE_URL}app/casting-analysis`}
+                      href={`/app/casting-analysis`}
                       rel="noopener noreferrer"
                     >
                       Casting Analysis
