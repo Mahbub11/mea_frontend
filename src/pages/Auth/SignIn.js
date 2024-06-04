@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axios";
 import { API_LEVEL } from "../../config";
+import { useDispatch } from "react-redux";
+import { getUserInfo } from "../../redux/slices/auth";
 
 export default function SignIn() {
+  const dispatch= useDispatch()
   const [api, contextHolder] = notification.useNotification();
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState(false);
@@ -35,11 +38,17 @@ export default function SignIn() {
             if (res.status === 200) {
               openNotification("success", "Success !", "Logged In Success");
               localStorage.setItem("access", res.data.token);
+              dispatch(getUserInfo())
   
+             setTimeout(()=>{
+               setLoading(false);
               navigate("/app");
+              
               window.location.reload(true);
+
+             },2000)
             }
-            setLoading(false);
+           
           })
           .catch((error) => {
             openNotification("error", "Error !", error.error);

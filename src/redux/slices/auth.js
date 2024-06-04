@@ -48,9 +48,9 @@ export const getUserInfo = (data) => async (dispatch) => {
 
       .catch((error) => {
         dispatch(slice.actions.LoadRequestFailed(error.detail));
-        dispatch(
-          ShowNotification({ severity: "error", message: 'Something went Wrong!' })
-        );
+        // dispatch(
+        //   ShowNotification({ severity: "error", message: 'Something went Wrong!' })
+        // );
 
         console.log(error);
       });
