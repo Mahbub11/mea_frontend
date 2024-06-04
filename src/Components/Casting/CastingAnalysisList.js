@@ -163,7 +163,7 @@ export default function CastingAnalysisList({
       ),
     },
     {
-      title: "Total Ammount(tk)",
+      title: "Total Amount(tk)",
       dataIndex: "total_amount",
       key: "total_amount",
       fixed: "right",

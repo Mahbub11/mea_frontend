@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, Button, notification, Tabs, Grid } from "antd";
 import "./index.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CloseNotification } from "../redux/actions";
 import { getSellsList } from "../redux/slices/sells";
@@ -16,6 +16,7 @@ import { getCompanyList } from "../redux/slices/company";
 import { getProjectList } from "../redux/slices/project";
 import { getSellsReportList } from "../redux/slices/sellsReport";
 import { API_LEVEL, APP_URL, LIVE_URL } from "../config";
+import { persistor } from "../redux/store";
 const { Header, Sider, Content } = Layout;
 const { useBreakpoint } = Grid;
 
@@ -24,6 +25,7 @@ export default function SectionLayout() {
   const [api, contextHolder] = notification.useNotification();
   const [collapsed, setCollapsed] = useState(true);
   const { common } = useSelector((state) => state.app);
+  const navigate = useNavigate();
 
   const openNotificationWithIcon = (type) => {
     api[type]({
@@ -47,6 +49,12 @@ export default function SectionLayout() {
     dispatch(getProjectList());
   }, []);
 
+  const handleLogout=()=>{
+    persistor.purge()
+    localStorage.removeItem("access");
+    window.location.reload(true);
+    navigate("/");
+  }
   return (
     <Layout className="bg-#e0ebf8 h-screen m-auto z-50 sm:w-full ">
       {contextHolder}
@@ -107,16 +115,16 @@ export default function SectionLayout() {
                   key: "user2",
                   permission: "user list",
                 },
-                {
-                  label: (
-                    <a href={`/app/billing`} rel="noopener noreferrer">
-                      Billing List
-                    </a>
-                  ),
-                  path: "billing",
-                  key: "user2",
-                  permission: "user list",
-                },
+                // {
+                //   label: (
+                //     <a href={`/app/billing`} rel="noopener noreferrer">
+                //       Billing List
+                //     </a>
+                //   ),
+                //   path: "billing",
+                //   key: "user2",
+                //   permission: "user list",
+                // },
                 {
                   label: (
                     <a
@@ -173,6 +181,11 @@ export default function SectionLayout() {
                   permission: "user list",
                 },
               ],
+            },
+            {
+              label: <button onClick={handleLogout} style={{border:'none'}} >Log Out</button>,
+              key: "Work_Order",
+              icon: <HomeOutlined />,
             },
           ]}
         ></Menu>

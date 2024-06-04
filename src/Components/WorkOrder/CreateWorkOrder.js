@@ -36,7 +36,7 @@ export default function CreateWorkOrder({
 
   const current = new Date();
 
-  const {showWorkOrder  } = useSelector((state) => state.workOrder);
+  const { showWorkOrder } = useSelector((state) => state.workOrder);
 
   const [dueDate, setDueDate] = useState();
   const [reviewInvoice, setReviewInvoice] = useState(false);
@@ -57,6 +57,7 @@ export default function CreateWorkOrder({
   const [disabled, setDisabled] = useState(false);
   const [dynamicInput, setDynamicInput] = useState(false);
   const [totalAmount, setTotalAmount] = useState();
+  const [printBtnState, setPrintBtnState] = useState(true);
   const [items, setItems] = useState([
     {
       id: uid(6),
@@ -92,12 +93,12 @@ export default function CreateWorkOrder({
     setContactNo(data.project.site_eng_phone);
   }, [data]);
 
-  useEffect(()=>{
-    
+  useEffect(() => {
     if (showWorkOrder) {
       setReviewInvoice(true);
+      setPrintBtnState(false);
     }
-  },[showWorkOrder])
+  }, [showWorkOrder]);
 
   const addItemHandler = () => {
     setItems((prevItem) => [
@@ -472,6 +473,7 @@ export default function CreateWorkOrder({
           </div>
 
           <Button
+            disabled={!printBtnState ? true : false}
             className="w-full mt-10 font-[700] border-blue-400"
             onClick={handleReview}
           >

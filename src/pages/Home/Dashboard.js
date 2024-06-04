@@ -49,22 +49,7 @@ function Dashboard(props) {
             </div>
           </div>
 
-          <div className="mt-10 w-full m-auto flex flex-col justify-center ">
-            <div className="w-full m-auto flex justify-center">
-              <Radio.Group className="" defaultValue="a" buttonStyle="solid">
-                <div className=" flex flex-wrap justify-center w-full m-auto gap-1">
-                  <Radio.Button value="a">Casting Report</Radio.Button>
-                  {/* <Radio.Button value="b">Casting Growth</Radio.Button>
-                  <Radio.Button value="c">Purchase</Radio.Button>
-                  <Radio.Button value="d">Sell</Radio.Button> */}
-                </div>
-              </Radio.Group>
-            </div>
-            <div className="px-2 py-3 self-center">
-              {/* <OrderGraph></OrderGraph> */}
-              <CftMpaGraph></CftMpaGraph>
-            </div>
-          </div>
+         
 
           {/* <div className="mt-10 md:w-[30%] sm:w-[40%] m-auto flex flex-col  gap-5 text-[20px]">
             <Link
@@ -88,3 +73,21 @@ function Dashboard(props) {
 }
 
 export default Dashboard;
+
+
+  // <div className="mt-10 w-full m-auto flex flex-col justify-center ">
+  //           <div className="w-full m-auto flex justify-center">
+  //             <Radio.Group className="" defaultValue="a" buttonStyle="solid">
+  //               <div className=" flex flex-wrap justify-center w-full m-auto gap-1">
+  //                 <Radio.Button value="a">Casting Report</Radio.Button>
+  //                 <Radio.Button value="b">Casting Growth</Radio.Button>
+  //                 <Radio.Button value="c">Purchase</Radio.Button>
+  //                 <Radio.Button value="d">Sell</Radio.Button> 
+  //                 </div>
+  //                 </Radio.Group>
+  //               </div>
+  //               <div className="px-2 py-3 self-center">
+  //                  <OrderGraph></OrderGraph> 
+  //                 <CftMpaGraph></CftMpaGraph>
+  //               </div>
+  //             </div>

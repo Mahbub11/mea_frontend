@@ -36,8 +36,8 @@ const Footer = () => (
       <Text> +(8802) 48110246</Text>
       <Text>+(8802) 58156976</Text>
       <Text>Telefax: +(8802) 58156976;</Text>
-      <Text>email: modern1977@yahoo.com</Text>
-      <Text>www.mea-ltd.net</Text>
+      <Text>email:info@scs-rmcbd.com</Text>
+      <Text>www.scs-rmcbd.com</Text>
     </View>
 
     <View>

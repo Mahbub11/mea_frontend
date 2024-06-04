@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div  id="homepage">
       <div className="mt-[-5rem] ">
-        <div className="relative overflow-hidden  md:h-[50rem] sm:h-[30rem]">
+        <div className="relative overflow-hidden  md:h-[100%] sm:h-[40rem]">
           <div className="w-full h-full absolute  opacity-70 blur-sm bg-[#000000]"></div>
           <div className="absolute top-0 -inset-full h-full w-full z-5 block transform bg-gradient-to-r from-transparent to-white opacity-40 animate-shine" />
 

@@ -253,6 +253,7 @@ export default function CastingList({
   const handleDelete = (id) => {
     dispatch(deleteSells(id));
     handleReFetch();
+    window.location.reload();
   };
   const onChangePage = (page) => {
     setCurrent(page);

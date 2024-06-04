@@ -39,10 +39,11 @@ export default function Footer() {
             </div>
 
             <div
-              className="overflow-hidden w-full sm:text-justify md:text-left mt-10 "
+              className="overflow-hidden
+              w-full sm:text-justify md:text-left mt-10 "
               ref={emblaRef}
             >
-              <div className="w-full sm:w-full flex gap-10 px-10">
+              <div className="w-full justify-center sm:w-full flex gap-10 px-10">
                 <div className="sm:ml-[1rem] md:ml-0 ">
                   <div className="h-auto md:w-[20rem] sm:w-[21rem]">
                     <img
@@ -164,16 +165,10 @@ export default function Footer() {
                 <span>
                   <MailOutlined></MailOutlined>
                 </span>
-                <h2 className="mt-[3px]">modern1977@yahoo.com</h2>
+                <h2 className="mt-[3px]">info@scs.com</h2>
               </span>
             </div>
           </div>
-          <a
-            href={`${LIVE_URL}app`}
-            className="text-white flex justify-end"
-          >
-            Admin
-          </a>
         </div>
       </div>
     </div>

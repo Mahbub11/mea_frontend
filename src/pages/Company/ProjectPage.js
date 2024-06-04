@@ -155,14 +155,14 @@ export default function ProjectPage() {
               </div>
             </Modal>
           </div>
-          <Drawer
+          {/* <Drawer
             closable={true}
             width={720}
             onClose={() => setDrawer(false)}
             open={drawer}
           >
             <PSells data={sellsList}></PSells>
-          </Drawer>
+          </Drawer> */}
         </div>
       )}
     </div>

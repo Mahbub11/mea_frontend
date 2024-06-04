@@ -86,17 +86,6 @@ export default function InvoiceListShow({
       ),
     },
     {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-
-      render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
-          <p>{record.description}</p>
-        </div>
-      ),
-    },
-    {
       title: "Company Name",
       dataIndex: "companyname",
       key: "companyname",
@@ -165,7 +154,7 @@ export default function InvoiceListShow({
       ),
     },
     {
-      title: "Total Ammount(tk)",
+      title: "Total Amount(tk)",
       dataIndex: "total_amount",
       key: "total_amount",
 
@@ -173,6 +162,22 @@ export default function InvoiceListShow({
         <div className="font-[600] cursor-pointer font-montserrat text-[13px]">
           <p>
             {(Math.round(record.total_amount * 100) / 100).toLocaleString()}
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Last Print",
+      dataIndex: "last_print",
+      key: "last_print",
+
+      render: (level, record) => (
+        <div className="font-[600] cursor-pointer font-montserrat text-[13px]">
+          <p>
+            {
+              record.last_print? moment(record.last_print).add(1,'days').format("DD-MM-YYYY") : "Not Printed"
+            }
+         
           </p>
         </div>
       ),

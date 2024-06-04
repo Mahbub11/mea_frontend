@@ -200,6 +200,7 @@ useEffect(()=>{
   };
 
   const handleReview = () => {
+    console.log(Date.now())
     if (!dueDate) {
       dispatch(
         ShowNotification({
@@ -222,6 +223,7 @@ useEffect(()=>{
       invoice_number: invoiceNumber,
       prev_amount: prevDue,
       paid_amount: rcvAmount? rcvAmount:0,
+     last_print:current
     };
 
     dispatch(updateSellsReport(SellsReportdata));
