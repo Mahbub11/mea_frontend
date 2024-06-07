@@ -111,11 +111,11 @@ const WorkOrder = ({ data }) => (
           <Text style={styles.inner_row}>
             Delivery Site Address: {data.deliveryAddress}
           </Text>
-          <Text style={styles.inner_row}>
-            Site Eng. Name: {data.contactName}
+           <Text style={styles.inner_row}>
+          Project Manager: {data.contactName}
           </Text>
           <Text style={styles.inner_row}>
-            Site Eng. Contact: {data.contactNo}
+          Project Manager Contact: {data.contactNo}
           </Text>
         </View>
       </View>

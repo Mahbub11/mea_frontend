@@ -165,7 +165,7 @@ export default function Footer() {
                 <span>
                   <MailOutlined></MailOutlined>
                 </span>
-                <h2 className="mt-[3px]">info@scs.com</h2>
+                <h2 className="mt-[3px]">info@scs-rmcbd.com</h2>
               </span>
             </div>
           </div>

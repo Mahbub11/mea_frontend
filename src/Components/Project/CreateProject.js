@@ -84,7 +84,7 @@ export default function CreateProject({ handleReFetch }) {
                 ></Input>
               </div>
               <div className="mt-3">
-                <p>Site Eng. Name</p>
+                <p>Project Manager Name</p>
                 <Input
                 value={siteEngName}
                 onChange={(e)=> setSiteEngName(e.target.value)}
@@ -92,8 +92,8 @@ export default function CreateProject({ handleReFetch }) {
                   className="h-[3rem] w-full  font-[700]"
                 ></Input>
               </div>
-              <div className="mt-3">
-                <p>Site Eng. Contact</p>
+              <div className="mt-1">
+                <p>Project Manager No.</p>
                 <Input
                 value={siteEngContact}
                 onChange={(e)=> setSiteEngContact(e.target.value)}
