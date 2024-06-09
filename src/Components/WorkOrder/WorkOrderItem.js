@@ -5,6 +5,14 @@ import TextArea from "antd/es/input/TextArea";
 
 const mpaRateList = [
   {
+    label: 20,
+    value: 325,
+  },
+  {
+    label: 21,
+    value: 340,
+  },
+  {
     label: 25,
     value: 340,
   },
@@ -20,6 +28,10 @@ const mpaRateList = [
     label: 32,
     value: 350,
   },
+  {
+    label: 35,
+    value: 350,
+  }
 ];
 export default function WorkOrderItem({
   id,

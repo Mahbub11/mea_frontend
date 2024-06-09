@@ -9,6 +9,7 @@ import { CloseOutlined } from "@ant-design/icons";
 
 export default function Addbalance({ handleInvoiceReFetch }) {
   const dispatch = useDispatch();
+  const [saveBtnState,setSaveBtnState]= useState(false)
   const [items, setItems] = useState([
     {
       id: uid(6),
@@ -75,7 +76,7 @@ export default function Addbalance({ handleInvoiceReFetch }) {
   };
 
   const handleSave = () => {
-    console.log(items);
+    setSaveBtnState(true)
     dispatch(sentoInventory(items));
   };
 
@@ -114,8 +115,9 @@ export default function Addbalance({ handleInvoiceReFetch }) {
           </button>
         </div>
 
-        <div className="mt-10 flex justify-end">
+        <div className={`${saveBtnState ?'opacity-50':'opacity-100'} mt-10 flex justify-end`}>
         <button
+          disabled={saveBtnState ?true:false}
             onClick={handleSave}
             className="bg-blue-300 rounded-md px-10 py-1 
              text-white"

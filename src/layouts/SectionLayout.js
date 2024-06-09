@@ -5,6 +5,12 @@ import {
   HomeOutlined,
   BookOutlined,
   TableOutlined,
+  AccountBookOutlined ,
+  ContainerOutlined ,
+  FileWordOutlined ,
+  ProfileOutlined,
+  DollarOutlined ,
+  LogoutOutlined 
 } from "@ant-design/icons";
 import { Layout, Menu, Button, notification, Tabs, Grid } from "antd";
 import "./index.css";
@@ -86,12 +92,12 @@ export default function SectionLayout() {
             {
               label: <a href={`/app/inventory`}>Inventory</a>,
               key: "Work_Order",
-              icon: <HomeOutlined />,
+              icon: <AccountBookOutlined />,
             },
             {
               label: <a href={`/app/work-order`}>Work Order</a>,
               key: "Work_Order",
-              icon: <HomeOutlined />,
+              icon: <ContainerOutlined />,
             },
             // {
             //   label: <a href={`${APP_URL}app/input/casting`}>Input Selling</a>,
@@ -101,7 +107,7 @@ export default function SectionLayout() {
             {
               label: "Casting",
               key: "access-control",
-              icon: "",
+              icon: <FileWordOutlined />,
               collapsed: "block",
 
               children: [
@@ -135,7 +141,7 @@ export default function SectionLayout() {
                     </a>
                   ),
                   path: "app/invoice-list",
-                  key: "user",
+                  key: "user22",
                   permission: "user list",
                 },
                 {
@@ -148,15 +154,15 @@ export default function SectionLayout() {
                     </a>
                   ),
                   path: "casting-analysis",
-                  key: "role1",
+                  key: "role21",
                 },
               ],
             },
 
             {
-              label: "Company",
-              key: "access-control",
-              icon: "",
+              label: "Clients",
+              key: "access-control2",
+              icon: <ProfileOutlined />,
               collapsed: "block",
 
               children: [
@@ -167,7 +173,7 @@ export default function SectionLayout() {
                     </a>
                   ),
                   path: "company",
-                  key: "user2",
+                  key: "user233",
                   permission: "user list",
                 },
                 {
@@ -177,15 +183,20 @@ export default function SectionLayout() {
                     </a>
                   ),
                   path: "project",
-                  key: "user",
+                  key: "user44",
                   permission: "user list",
                 },
               ],
             },
             {
-              label: <button onClick={handleLogout} style={{border:'none'}} >Log Out</button>,
+              label: <a href={`/app/payment`}>Payment</a>,
               key: "Work_Order",
-              icon: <HomeOutlined />,
+              icon: <DollarOutlined />,
+            },
+            {
+              label: <button onClick={handleLogout} style={{border:'none'}} >Log Out</button>,
+              key: "LogOut",
+              icon: <LogoutOutlined />,
             },
           ]}
         ></Menu>

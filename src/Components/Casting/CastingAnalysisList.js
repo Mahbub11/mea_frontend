@@ -118,17 +118,7 @@ export default function CastingAnalysisList({
         </div>
       ),
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-
-      render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
-          <p>{record.description}</p>
-        </div>
-      ),
-    },
+    
     {
       title: "Company Name",
       dataIndex: "companyname",
