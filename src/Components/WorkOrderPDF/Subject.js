@@ -9,12 +9,12 @@ const styles = StyleSheet.create({
         width:'90%'
     },
     reportTitle:{
-        fontSize: 17,
+        fontSize: 15,
         fontWeight:'ultrabold',
        
     },
     subject:{
-        fontWeight:'ultrabold',
+       fontSize:'12px',
         textDecoration:'underline',
         marginLeft:'2px'
       

@@ -184,39 +184,52 @@ export default function CastingList({
           )}
 
           {record.status !== 1 ? (
-            <Popover
-              overlayStyle={{
-                width: isMobile ? "60%" : "auto",
-              }}
-              content={
-                <span className="flex flex-wrap gap-2">
-                  {/* <Button>Work Order</Button> */}
-                  <Button onClick={() => handleEditCompany(record.id)}>
-                    Edit
-                  </Button>
-                  <Popconfirm
-                    okType="danger"
-                    onConfirm={(e) => handleDelete(record.id)}
-                    title="Delete Item"
-                    description="If deleted consume inventory items will restore"
-                  >
-                    <Button className="border-[1px]  cursor-pointer ">
-                      <DeleteOutlined
-                        color="red"
-                        className="cursor-pointer mt-[-5px]"
-                      ></DeleteOutlined>
-                    </Button>
-                  </Popconfirm>
-                </span>
-              }
-              title="More Action"
-            >
-              {" "}
-              <MoreOutlined
-                color="red"
-                className="text-[20px] mt-[5px] cursor-pointer"
-              ></MoreOutlined>
-            </Popover>
+             <Popconfirm
+             okType="danger"
+             onConfirm={(e) => handleDelete(record.id)}
+             title="Delete Item"
+             description="If deleted consume inventory items will restore"
+           >
+             <Button className="border-[1px]  cursor-pointer ">
+               <DeleteOutlined
+                 color="red"
+                 className="cursor-pointer mt-[-5px]"
+               ></DeleteOutlined>
+             </Button>
+           </Popconfirm>
+            // <Popover
+            //   overlayStyle={{
+            //     width: isMobile ? "60%" : "auto",
+            //   }}
+            //   content={
+            //     <span className="flex flex-wrap gap-2">
+            //       {/* <Button>Work Order</Button> */}
+            //       {/* <Button onClick={() => handleEditCompany(record.id)}>
+            //         Edit
+            //       </Button> */}
+            //       <Popconfirm
+            //         okType="danger"
+            //         onConfirm={(e) => handleDelete(record.id)}
+            //         title="Delete Item"
+            //         description="If deleted consume inventory items will restore"
+            //       >
+            //         <Button className="border-[1px]  cursor-pointer ">
+            //           <DeleteOutlined
+            //             color="red"
+            //             className="cursor-pointer mt-[-5px]"
+            //           ></DeleteOutlined>
+            //         </Button>
+            //       </Popconfirm>
+            //     </span>
+            //   }
+            //   title="More Action"
+            // >
+            //   {" "}
+            //   <MoreOutlined
+            //     color="red"
+            //     className="text-[20px] mt-[5px] cursor-pointer"
+            //   ></MoreOutlined>
+            // </Popover>
           ) : (
             ""
           )}

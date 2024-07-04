@@ -8,8 +8,9 @@ const styles = StyleSheet.create({
     lineHeight: 1.2,
   },
   message:{
-    width: "100%",
-    lineHeight: 1.2,
+    width: "80%",
+    lineHeight: 1.4,
+    fontSize:'12px'
   }
  
 });

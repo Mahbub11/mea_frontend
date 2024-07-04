@@ -72,7 +72,7 @@ export default function InventoryPage() {
                     </div>
                     <div className="px-10 py-5 bg-home rounded-md flex flex-col justify-center">
                       <h1 className="md:text-[30px] sm:text-[15px]">
-                        Sand <span className="text-[10px]">(ton)</span>
+                        Sand <span className="text-[10px]">(cft)</span>
                       </h1>
                       <div className="mr-[2.5rem]">
                       <h1 className="text-[40px] text-white">{inventory?.sand}</h1>
@@ -80,7 +80,7 @@ export default function InventoryPage() {
                     </div>
                     <div className="px-10 py-5 bg-home rounded-md flex flex-col justify-center">
                       <h1 className="md:text-[30px] sm:text-[15px]">
-                        Cement <span className="text-[10px]">(cft)</span>
+                        Cement <span className="text-[10px]">(ton)</span>
                       </h1>
                       <div className="mr-[4rem]">
                       <h1 className="text-[40px] text-white">{inventory?.cement}</h1>
@@ -96,15 +96,10 @@ export default function InventoryPage() {
                     </div>
                     <div className="px-10 py-5 bg-home rounded-md flex flex-col justify-center">
                       <h1 className="md:text-[30px] sm:text-[15px]">
-                        Bricks Chips <span className="text-[10px]">(ton)</span>
+                        Bricks <span className="text-[10px]">(cft)</span>
                       </h1>
-                      <div className="mr-[6rem]">
-                        <AnimatedCounter
-                          decimalPrecision={true}
-                          value='0000'
-                          color="white"
-                          fontSize="40px"
-                        />
+                      <div className="mr-[4rem]">
+                      <h1 className="text-[40px] text-white">{inventory?.bricks_chips}</h1>
                       </div>
                     </div>
                     {/* <div className="px-5 py-5 bg-home rounded-md flex flex-col justify-center">

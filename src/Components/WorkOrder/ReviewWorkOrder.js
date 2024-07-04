@@ -96,7 +96,7 @@ export default function ReviewWorkOrder({ workOrderData: data, cName }) {
       <div className="px-2 py-2 w-full flex justify-center text-[20px] font-[700] bg-home rounded-md">
         <PDFDownloadLink
           document={<WorkOrder data={invoiceData}></WorkOrder>}
-          fileName={`work_order ${cName}`}
+          fileName={`work_order ${cName.company.name}`}
         >
           Download
         </PDFDownloadLink>

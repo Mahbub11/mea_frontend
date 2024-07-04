@@ -30,9 +30,9 @@ const slice = createSlice({
       state.showWorkOrder = true;
     },
     setResetData: (state, action) => {
-      state.error = []
-      state.workOrder = []
-      state.showWorkOrder = false
+      state.error = [];
+      state.workOrder = [];
+      state.showWorkOrder = false;
     },
   },
 });
@@ -79,19 +79,27 @@ export const saveWorkOrder = (data) => async (dispatch) => {
       })
 
       .catch((error) => {
-
         dispatch(slice.actions.setWorkOrderRequestFailed(error));
+       
         dispatch(
-          ShowNotification({ severity: "error", message: error.message })
+          ShowNotification({
+            severity: "special",
+            message: error.insufficientItems,
+          })
         );
+        // dispatch(
+        //   ShowNotification({ severity: "error", message: error.insufficientItems.map(({ item, insufficientMaterials }) => {
+        //     const materialsString = insufficientMaterials.join(', ');
+        //     return `Insufficient balance for ${materialsString} for item ${item}.`;
+        //   }) })
+        // );
       });
   } catch (error) {
     dispatch(ShowNotification({ severity: "error", message: error.message }));
   }
 };
 export const updateworkOrder = (data) => async (dispatch) => {
-
-  console.log(data)
+  console.log(data);
   try {
     dispatch(slice.actions.getWorkOrderRequest());
     axiosInstance
@@ -142,13 +150,8 @@ export const deleteWorkOrder = (id) => async (dispatch) => {
   }
 };
 
-
 export const resetWorkOrderData = (id) => async (dispatch) => {
-
   try {
     dispatch(slice.actions.setResetData());
-  } catch (error) {
-    
-  }
-
-}
+  } catch (error) {}
+};

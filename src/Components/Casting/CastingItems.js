@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import moment from "moment";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-export default function CastingItems({ data,project }) {
+export default function CastingItems({ data, project }) {
   console.log(data);
-  
 
   const [current, setCurrent] = useState(1);
   const [page, setPage] = useState(5);
@@ -77,17 +76,17 @@ export default function CastingItems({ data,project }) {
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
             {parseInt(record.materials_category) === 21
-              ? (record.cubic_meter * 1075) / 1000
+              ? ((record.cubic_meter * 1052) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 25
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 1022) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 28
-              ? (record.cubic_meter * 1040) / 1000
+              ?( (record.cubic_meter * 1040) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 30
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 1040) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 32
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 1040) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 35
-              ? (record.cubic_meter * 1060) / 1000
+              ? ((record.cubic_meter * 1040) / 1000).toFixed(3)
               : 0}
           </p>
         </div>
@@ -100,18 +99,20 @@ export default function CastingItems({ data,project }) {
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
-            {parseInt(record.materials_category) === 21
-              ? Math.floor((record.cubic_meter * 865) / 3).toFixed(2)
+            {parseInt(record.materials_category) === 20
+              ? (Math.floor((record.cubic_meter * 770) / 38))
+              : parseInt(record.materials_category) === 21
+              ? Math.floor((record.cubic_meter * 885) / 38)
               : parseInt(record.materials_category) === 25
-              ? Math.floor((record.cubic_meter * 850) / 35)
+              ? Math.floor((record.cubic_meter * 900) / 38)
               : parseInt(record.materials_category) === 28
-              ? Math.floor((record.cubic_meter * 820) / 35)
+              ? Math.floor((record.cubic_meter * 820) / 38)
               : parseInt(record.materials_category) === 30
-              ? Math.floor((record.cubic_meter * 820) / 35)
+              ? Math.floor((record.cubic_meter * 820) / 38)
               : parseInt(record.materials_category) === 32
-              ? Math.floor((record.cubic_meter * 810) / 35)
+              ? Math.floor((record.cubic_meter * 810) / 38)
               : parseInt(record.materials_category) === 35
-              ? Math.floor((record.cubic_meter * 770) / 35)
+              ? Math.floor((record.cubic_meter * 800) / 38)
               : 0}
           </p>
         </div>
@@ -124,18 +125,34 @@ export default function CastingItems({ data,project }) {
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
-            {parseInt(record.materials_category) === 21
-              ? (record.cubic_meter * 370) / 1000
+            {parseInt(record.materials_category) === 20
+              ? ((record.cubic_meter * 350) / 1000).toFixed(3)
+              :parseInt(record.materials_category) === 21
+              ?( (record.cubic_meter * 350) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 25
-              ? (record.cubic_meter * 385) / 1000
+              ?( (record.cubic_meter * 350) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 28
-              ? (record.cubic_meter * 400) / 1000
+              ? ((record.cubic_meter * 385) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 30
-              ? (record.cubic_meter * 400) / 1000
+              ? ((record.cubic_meter * 385) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 32
-              ? (record.cubic_meter * 410) / 1000
+              ? ((record.cubic_meter * 400) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 35
-              ? (record.cubic_meter * 430) / 1000
+              ? ((record.cubic_meter * 420) / 1000).toFixed(3)
+              : 0}
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Bricks(cft)",
+      dataIndex: "cft_quantity",
+      key: "cft_quantity",
+      render: (level, record) => (
+        <div className=" cursor-pointer font-montserrat font-[400] ">
+          <p>
+            {parseInt(record.materials_category) === 20
+              ? parseFloat(((record.cubic_meter * 1032) / 33).toFixed(3))
               : 0}
           </p>
         </div>
@@ -148,23 +165,26 @@ export default function CastingItems({ data,project }) {
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
-            {parseInt(record.materials_category) === 21
-              ? record.cubic_meter * 1.5
+            {parseInt(record.materials_category) === 20
+              ? (record.cubic_meter * 1.5).toFixed(3)
+              : parseInt(record.materials_category) === 21
+              ?( record.cubic_meter * 1.5).toFixed(3)
               : parseInt(record.materials_category) === 25
-              ? record.cubic_meter * 2.5
+              ? (record.cubic_meter * 2).toFixed(3)
               : parseInt(record.materials_category) === 28
-              ? record.cubic_meter * 3
+              ? (record.cubic_meter * 2.5).toFixed(3)
               : parseInt(record.materials_category) === 30
-              ? record.cubic_meter * 3
+              ? (record.cubic_meter * 2.5).toFixed(3)
               : parseInt(record.materials_category) === 32
-              ? record.cubic_meter * 3.5
+              ? (record.cubic_meter * 3).toFixed(3)
               : parseInt(record.materials_category) === 35
-              ? record.cubic_meter * 3.5
+              ? (record.cubic_meter * 3.5).toFixed(3)
               : 0}
           </p>
         </div>
       ),
     },
+    
 
     {
       title: "Pump Charge",
@@ -199,14 +219,13 @@ export default function CastingItems({ data,project }) {
       <h1 className="text-center">
         Items Of :
         <span className="font-[700] bg-gray-100 px-1 py-1 rounded-md">
-          {data?.project?.name ? data.project.name :project.name}
+          {data?.project?.name ? data.project.name : project.name}
         </span>
       </h1>
       <div>
         <div className=" w-full mt-5 flex-col gap-5 justify-center m-auto">
           <Table
-            dataSource={data.workOrderItems
-              }
+            dataSource={data.workOrderItems}
             columns={columns}
             style={{ fontSize: "20px" }}
             size="middle"
@@ -261,11 +280,13 @@ export default function CastingItems({ data,project }) {
               </h2>
               <h2>
                 Site Eng. Name:{" "}
-                <span className="font-[700]">{data.site_eng_name}</span>
+                <span className="font-[700]">{data.site_eng_name?
+                data.site_eng_name:data.project.site_eng_name}</span>
               </h2>
               <h2>
                 Site Eng. Phone:{" "}
-                <span className="font-[700]">{data.site_eng_phone}</span>
+                <span className="font-[700]">{data.site_eng_phone?
+                data.site_eng_phone:data.project.site_eng_phone}</span>
               </h2>
             </div>
           </div>

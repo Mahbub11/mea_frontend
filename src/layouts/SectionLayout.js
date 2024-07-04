@@ -5,14 +5,14 @@ import {
   HomeOutlined,
   BookOutlined,
   TableOutlined,
-  AccountBookOutlined ,
-  ContainerOutlined ,
-  FileWordOutlined ,
+  AccountBookOutlined,
+  ContainerOutlined,
+  FileWordOutlined,
   ProfileOutlined,
-  DollarOutlined ,
-  LogoutOutlined 
+  DollarOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, notification, Tabs, Grid } from "antd";
+import { Layout, Menu, Button, notification, Tabs, Grid, message } from "antd";
 import "./index.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,10 +41,41 @@ export default function SectionLayout() {
     });
   };
 
+  const openNotificationWithIconSpeecial = ({ type, message }) => {
+    api[type]({
+      message: type,
+      description: message?.map(({ item, insufficientMaterials }) => {
+        const materialsString = insufficientMaterials.join(", ");
+        return (
+          <div>
+            <h2>Insufficient balance for <span className="text-red-500 font-[700] "> {materialsString}</span>
+            {" "}for Category <span className="text-red-500 font-[700] "> {item}</span></h2>
+          
+          </div>
+        );
+      }),
+      placement: "top",
+      showProgress: true,
+      pauseOnHover:true,
+    });
+  };
+
   useEffect(() => {
     dispatch(CloseNotification());
-    if (common.message) {
+
+    if (common.message && common.severity != "special") {
+      console.log(common.message);
       openNotificationWithIcon(common.severity);
+    } else if(common.message && common.severity == "special") {
+      console.log(common.message);
+      // common?.message?.map(({ item, insufficientMaterials }) => {
+      //   const materialsString = insufficientMaterials.join(", ");
+
+      // });
+      openNotificationWithIconSpeecial({
+        type: "error",
+        message: common.message,
+      });
     }
   }, [common.message]);
 
@@ -55,12 +86,12 @@ export default function SectionLayout() {
     dispatch(getProjectList());
   }, []);
 
-  const handleLogout=()=>{
-    persistor.purge()
+  const handleLogout = () => {
+    persistor.purge();
     localStorage.removeItem("access");
     window.location.reload(true);
     navigate("/");
-  }
+  };
   return (
     <Layout className="bg-#e0ebf8 h-screen m-auto z-50 sm:w-full ">
       {contextHolder}
@@ -91,12 +122,12 @@ export default function SectionLayout() {
             },
             {
               label: <a href={`/app/inventory`}>Inventory</a>,
-              key: "Work_Order",
+              key: "Work_Order11",
               icon: <AccountBookOutlined />,
             },
             {
               label: <a href={`/app/work-order`}>Work Order</a>,
-              key: "Work_Order",
+              key: "Work_Order111",
               icon: <ContainerOutlined />,
             },
             // {
@@ -133,10 +164,7 @@ export default function SectionLayout() {
                 // },
                 {
                   label: (
-                    <a
-                      href={`/app/invoice-list`}
-                      rel="noopener noreferrer"
-                    >
+                    <a href={`/app/invoice-list`} rel="noopener noreferrer">
                       Invoice List
                     </a>
                   ),
@@ -146,11 +174,8 @@ export default function SectionLayout() {
                 },
                 {
                   label: (
-                    <a
-                      href={`/app/casting-analysis`}
-                      rel="noopener noreferrer"
-                    >
-                      Casting Analysis
+                    <a href={`/app/casting-analysis`} rel="noopener noreferrer">
+                      Sells Analysis
                     </a>
                   ),
                   path: "casting-analysis",
@@ -194,7 +219,11 @@ export default function SectionLayout() {
               icon: <DollarOutlined />,
             },
             {
-              label: <button onClick={handleLogout} style={{border:'none'}} >Log Out</button>,
+              label: (
+                <button onClick={handleLogout} style={{ border: "none" }}>
+                  Log Out
+                </button>
+              ),
               key: "LogOut",
               icon: <LogoutOutlined />,
             },

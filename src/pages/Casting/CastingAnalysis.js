@@ -191,7 +191,7 @@ function CastingAnalysis(props) {
             open={drawer}
           >
             <CastingItems
-              project={projectDetails}
+             
               data={castingItems}
             ></CastingItems>
           </Drawer>

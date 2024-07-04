@@ -22,7 +22,7 @@ const itemList = [
     value: "admixer",
   },
   {
-    label: "bricks_chips",
+    label: "bricks",
     value: "bricks_chips",
   },
   {
@@ -155,7 +155,8 @@ export default function InventoryItem({
               type: "text",
               // name: "materials_category",
               id: id,
-              value:item==='cement'? "Item Rate(per cft)":
+              value:item==='sand' ? "Item Rate(per cft)":
+              item==='bricks_chips' ? "Item Rate(per cft)":
               item==='admixer'?'Item Rate(per kg)':"Item Rate(per ton)",
               className: " px-2 py-2 w-[12rem] drop-shadow-sm",
             }}

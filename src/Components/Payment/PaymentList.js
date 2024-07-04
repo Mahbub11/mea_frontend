@@ -66,17 +66,7 @@ export default function PaymentList({
         </div>
       ),
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-
-      render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
-          <p>{record.description}</p>
-        </div>
-      ),
-    },
+    
     {
       title: "Company Name",
       dataIndex: "companyname",
@@ -98,30 +88,6 @@ export default function PaymentList({
       ),
     },
     {
-      title: "Unit",
-      dataIndex: "unit",
-      key: "unit",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat  text-[13px]">
-          <Tag color="blue">
-            <p>{Math.round(record.unit * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
-    {
-      title: "Unit Rate(tk)",
-      dataIndex: "unit_rate",
-      key: "unit_rate",
-      render: (level, record) => (
-        <div className="font-[500] cursor-pointer font-montserrat text-[13px]">
-          <Tag color="geekblue">
-            <p>{Math.round(record.unit_rate * 100) / 100}</p>
-          </Tag>
-        </div>
-      ),
-    },
-    {
       title: "Vat",
       dataIndex: "vat",
       key: "vat",
@@ -133,24 +99,9 @@ export default function PaymentList({
         </div>
       ),
     },
+   
     {
-      title: "Pump Charge",
-      dataIndex: "pump_charge",
-      key: "pump_charge",
-      render: (level, record) => (
-        <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
-          <p>
-            {record.pump_charge ? (
-              <Tag icon={<CheckCircleOutlined />} color="success"></Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="error"></Tag>
-            )}
-          </p>
-        </div>
-      ),
-    },
-    {
-      title: "Total Ammount(tk)",
+      title: "Due Ammount(tk)",
       dataIndex: "total_amount",
       key: "total_amount",
 
@@ -158,6 +109,19 @@ export default function PaymentList({
         <div className="font-[600] cursor-pointer font-montserrat text-[13px]">
           <p>
             {(Math.round(record.total_amount * 100) / 100).toLocaleString()}
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Paid Ammount(tk)",
+      dataIndex: "paid_amount",
+      key: "paid_amount",
+
+      render: (level, record) => (
+        <div className="font-[600] cursor-pointer font-montserrat text-[13px]">
+          <p>
+            {(Math.round(record.paid_amount * 100) / 100).toLocaleString()}
           </p>
         </div>
       ),

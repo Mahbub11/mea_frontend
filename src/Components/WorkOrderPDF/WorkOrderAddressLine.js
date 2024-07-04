@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         height: 20,
+        fontSize:'12px',
         fontStyle: 'bold',
     },
     description: {

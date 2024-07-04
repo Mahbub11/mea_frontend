@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Popconfirm, Popover, Tag, Tooltip } from "antd";
 import { Pagination, PaginationProps, Row, Select, Table } from "antd";
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-} from "@ant-design/icons";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deleteCompany } from "../../redux/slices/company";
@@ -26,7 +23,7 @@ export default function InvoiceListShow({
     setProjectsData(projects);
   }, [projects]);
 
-
+  console.log(projectsData);
 
   const columns = [
     {
@@ -37,16 +34,16 @@ export default function InvoiceListShow({
       sorter: (a, b) => a.id - b.id,
       render: (level, record) => (
         <div
-        onClick={(e) => openItems(record.id)}
-        className="cursor-pointer font-montserrat font-[400] "
-      >
-        <button
-          // onClick={(e) => openProjectList(record.id)}
-          className="sm:text-[15px]  font-montserrat font-[400] flex gap-2"
+          onClick={(e) => openItems(record.id)}
+          className="cursor-pointer font-montserrat font-[400] "
         >
-          <p>C-{record.id}</p>
-        </button>
-      </div>
+          <button
+            // onClick={(e) => openProjectList(record.id)}
+            className="sm:text-[15px]  font-montserrat font-[400] flex gap-2"
+          >
+            <p>I-{record.id}</p>
+          </button>
+        </div>
       ),
     },
     {
@@ -85,6 +82,7 @@ export default function InvoiceListShow({
         </div>
       ),
     },
+
     {
       title: "Company Name",
       dataIndex: "companyname",
@@ -147,14 +145,12 @@ export default function InvoiceListShow({
       key: "pump_charge",
       render: (level, record) => (
         <div className="cursor-pointer font-montserrat font-[400] text-[13px]">
-          <p>
-            {record.pump_charge }
-          </p>
+          <p>{record.pump_charge}</p>
         </div>
       ),
     },
     {
-      title: "Total Amount(tk)",
+      title: "Due Amount(tk)",
       dataIndex: "total_amount",
       key: "total_amount",
 
@@ -167,6 +163,17 @@ export default function InvoiceListShow({
       ),
     },
     {
+      title: "Paid Amount(tk)",
+      dataIndex: "total_amount",
+      key: "total_amount",
+
+      render: (level, record) => (
+        <div className="font-[600] cursor-pointer font-montserrat text-[13px]">
+          <p>{(Math.round(record.paid_amount * 100) / 100).toLocaleString()}</p>
+        </div>
+      ),
+    },
+    {
       title: "Last Print",
       dataIndex: "last_print",
       key: "last_print",
@@ -174,10 +181,9 @@ export default function InvoiceListShow({
       render: (level, record) => (
         <div className="font-[600] cursor-pointer font-montserrat text-[13px]">
           <p>
-            {
-              record.last_print? moment(record.last_print).add(1,'days').format("DD-MM-YYYY") : "Not Printed"
-            }
-         
+            {record.last_print
+              ? moment(record.last_print).add(1, "days").format("DD-MM-YYYY")
+              : "Not Printed"}
           </p>
         </div>
       ),

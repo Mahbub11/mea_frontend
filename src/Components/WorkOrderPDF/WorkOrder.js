@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
   billTo: {
     marginTop: 40,
+    fontSize:'14px'
   },
   lineView: {
     display: "flex",
@@ -59,6 +60,8 @@ const styles = StyleSheet.create({
   },
   metaData: {
     marginTop: '20px',
+    lineHeight: 1.3,
+    fontSize:'12px'
   },
   inner_row: {
     gap: 5,
@@ -67,9 +70,10 @@ const styles = StyleSheet.create({
     marginTop: "3px",
   },
   text: {
-    fontWeight: "bold",
-    fontFamily: "Helvetica-Bold",
-    marginTop: "10px",
+    fontWeight: "light",
+    fontSize:'10px',
+    marginTop: "8px",
+    lineHeight: 1.2,
   },
   logo: {
     width: "60px",

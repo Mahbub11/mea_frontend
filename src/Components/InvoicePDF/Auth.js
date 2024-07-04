@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop:'100px'
+    marginTop:'100px',
   },
   dash: {
     border: "1px",
@@ -22,11 +22,17 @@ const styles = StyleSheet.create({
     height: "60px",
   
   },
+  rcv: {
+    bottom:0,
+    alignSelf:'flex-end'
+  
+  },
+  
 });
 
 const Auth = () => (
   <View style={styles.row}>
-    <View>
+    <View  style={styles.rcv} >
       <View style={styles.dash}></View>
       <Text style={styles.reportTitle}>Received By</Text>
     </View>

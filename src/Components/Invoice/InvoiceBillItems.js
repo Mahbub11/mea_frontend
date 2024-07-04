@@ -76,17 +76,17 @@ export default function InvoiceBillItems({ data }) {
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
             {parseInt(record.materials_category) === 21
-              ? (record.cubic_meter * 1075) / 1000
+              ? ((record.cubic_meter * 1052) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 25
-              ? ((record.cubic_meter * 1040) / 1000).toFixed(2)
+              ? ((record.cubic_meter * 1022) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 28
-              ? (record.cubic_meter * 1040) / 1000
+              ?( (record.cubic_meter * 1040) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 30
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 1040) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 32
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 1040) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 35
-              ? (record.cubic_meter * 1060) / 1000
+              ? ((record.cubic_meter * 1040) / 1000).toFixed(3)
               : 0}
           </p>
         </div>
@@ -98,19 +98,21 @@ export default function InvoiceBillItems({ data }) {
       key: "cft_quantity",
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
-          <p>
-            {parseInt(record.materials_category) === 21
-              ? Math.floor((record.cubic_meter * 865) / 3)
+         <p>
+            {parseInt(record.materials_category) === 20
+              ? (Math.floor((record.cubic_meter * 770) / 38))
+              : parseInt(record.materials_category) === 21
+              ? Math.floor((record.cubic_meter * 885) / 38)
               : parseInt(record.materials_category) === 25
-              ? ((record.cubic_meter * 850) / 35).toFixed(2)
+              ? Math.floor((record.cubic_meter * 900) / 38)
               : parseInt(record.materials_category) === 28
-              ? Math.floor((record.cubic_meter * 820) / 35)
+              ? Math.floor((record.cubic_meter * 820) / 38)
               : parseInt(record.materials_category) === 30
-              ? Math.floor((record.cubic_meter * 820) / 35)
+              ? Math.floor((record.cubic_meter * 820) / 38)
               : parseInt(record.materials_category) === 32
-              ? Math.floor((record.cubic_meter * 810) / 35)
+              ? Math.floor((record.cubic_meter * 810) / 38)
               : parseInt(record.materials_category) === 35
-              ? Math.floor((record.cubic_meter * 770) / 35)
+              ? Math.floor((record.cubic_meter * 800) / 38)
               : 0}
           </p>
         </div>
@@ -122,19 +124,35 @@ export default function InvoiceBillItems({ data }) {
       key: "cft_quantity",
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
-          <p>
-            {parseInt(record.materials_category) === 21
-              ? (record.cubic_meter * 1075) / 1000
+         <p>
+            {parseInt(record.materials_category) === 20
+              ? ((record.cubic_meter * 350) / 1000).toFixed(3)
+              :parseInt(record.materials_category) === 21
+              ?( (record.cubic_meter * 350) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 25
-              ? (record.cubic_meter * 1040) / 1000
+              ?( (record.cubic_meter * 350) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 28
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 385) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 30
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 385) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 32
-              ? (record.cubic_meter * 1040) / 1000
+              ? ((record.cubic_meter * 400) / 1000).toFixed(3)
               : parseInt(record.materials_category) === 35
-              ? (record.cubic_meter * 1060) / 1000
+              ? ((record.cubic_meter * 420) / 1000).toFixed(3)
+              : 0}
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "Bricks(cft)",
+      dataIndex: "cft_quantity",
+      key: "cft_quantity",
+      render: (level, record) => (
+        <div className=" cursor-pointer font-montserrat font-[400] ">
+          <p>
+            {parseInt(record.materials_category) === 20
+              ? parseFloat(((record.cubic_meter * 1032) / 33).toFixed(3))
               : 0}
           </p>
         </div>
@@ -147,18 +165,20 @@ export default function InvoiceBillItems({ data }) {
       render: (level, record) => (
         <div className=" cursor-pointer font-montserrat font-[400] ">
           <p>
-            {parseInt(record.materials_category) === 21
-              ? record.cubic_meter * 1.5
+            {parseInt(record.materials_category) === 20
+              ? (record.cubic_meter * 1.5).toFixed(3)
+              : parseInt(record.materials_category) === 21
+              ?( record.cubic_meter * 1.5).toFixed(3)
               : parseInt(record.materials_category) === 25
-              ? record.cubic_meter * 2.5
+              ? (record.cubic_meter * 2).toFixed(3)
               : parseInt(record.materials_category) === 28
-              ? record.cubic_meter * 3
+              ? (record.cubic_meter * 2.5).toFixed(3)
               : parseInt(record.materials_category) === 30
-              ? record.cubic_meter * 3
+              ? (record.cubic_meter * 2.5).toFixed(3)
               : parseInt(record.materials_category) === 32
-              ? record.cubic_meter * 3.5
+              ? (record.cubic_meter * 3).toFixed(3)
               : parseInt(record.materials_category) === 35
-              ? record.cubic_meter * 3.5
+              ? (record.cubic_meter * 3.5).toFixed(3)
               : 0}
           </p>
         </div>

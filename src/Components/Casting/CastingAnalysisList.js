@@ -25,6 +25,7 @@ export default function CastingAnalysisList({
   const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
   const dispatch = useDispatch();
   const [projectsData, setProjectsData] = useState([]);
+  let newDate = new Date()
 
   useEffect(() => {
     setProjectsData(projects);
@@ -40,10 +41,8 @@ export default function CastingAnalysisList({
       description: val.description,
       company: val.company.name,
       project: val.project.name,
-      items: {
-        f: "fff",
-        d: "dddd",
-      },
+      materials_category: val.workOrderItems[0].materials_category,
+      materials_rate:val.workOrderItems[0].materials_rate,
       vat: val.vat,
       total_amount: val.total_amount,
       paid_amount: val.paid_amount,
@@ -153,7 +152,7 @@ export default function CastingAnalysisList({
       ),
     },
     {
-      title: "Total Amount(tk)",
+      title: "Due Amount(tk)",
       dataIndex: "total_amount",
       key: "total_amount",
       fixed: "right",
@@ -221,7 +220,7 @@ export default function CastingAnalysisList({
     <div className="m-auto flex flex-col justify-center sm:pb-5">
       <span className="px-2 py-2 self-end">
         <CSVLink
-          filename={"SES_sells_report.csv"}
+          filename={`${moment(newDate).format("DD-MM-YYYY")}_SES_sells_report.csv`}
           className="bg-home px-2 hover:text-red-400 py-1 rounded-md"
           data={csvData}
         >

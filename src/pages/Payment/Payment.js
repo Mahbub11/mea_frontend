@@ -148,7 +148,7 @@ export default function Payment() {
 
               <hr className="mt-5"></hr>
               <div className="flex justify-between text-[25px] ">
-                <h2 className="">Reamining Amount:</h2>
+                <h2 className="">Remaining Amount:</h2>
                 <span className="font-[700]">
                   {remainAmount?.toLocaleString()} {""}Tk
                 </span>
